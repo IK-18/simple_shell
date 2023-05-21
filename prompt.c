@@ -24,7 +24,8 @@ void prompt(char **argv, char **env)
 
     while (1)
     {
-        printf("IKShell$ ");
+        if (isatty(STDIN_FILENO))
+            printf("IKShell$ ");
 
         char_len = getline(&lineptr, &n, stdin);
         /*frees the pointer after reading characters*/
@@ -38,7 +39,6 @@ void prompt(char **argv, char **env)
         {
             if (lineptr[i])
                 lineptr[i] = 0;
-            i++;
         }
         /*stores the user input as av*/
         av[0] = lineptr;
