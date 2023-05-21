@@ -55,7 +55,7 @@ void prompt(char **argv, char **environ)
         {
             /*runs command and checks value simultaneously*/
             if (execve(av[0], av, environ) == -1)
-                printf("%s: No such file or directory\n", argv[0]);
+                printf("%s: No such file or directory\n", av[0]);
         }
         /*monitor the status of the child process and wait*/
         else
