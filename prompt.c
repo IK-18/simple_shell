@@ -37,7 +37,7 @@ void prompt(char **argv, char **env)
         /*checks for newline character*/
         while (lineptr[i])
         {
-            if (lineptr[i] == "\n")
+            if (lineptr[i] == '\n')
                 lineptr[i] = 0;
             i++;
         }
