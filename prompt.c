@@ -38,6 +38,7 @@ void prompt(char **argv, char **environ)
         {
             if (lineptr[i])
                 lineptr[i] = 0;
+            i++;
         }
         /*stores the user input as av*/
         av[0] = lineptr;
