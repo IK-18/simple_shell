@@ -5,9 +5,9 @@
  *
  */
 
-int main(int argc, char **argv, char **environ)
+int main(int argc, char **argv, char **env)
 {
     if (argc == 1)
-        prompt(argv, environ);
+        prompt(argv, env);
     return (0);
 }

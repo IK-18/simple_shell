@@ -7,6 +7,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-void prompt(char **argv, char **environ);
+void prompt(char **argv, char **env);
 
 #endif /*SHELL_H*/
