@@ -51,7 +51,7 @@ void prompt(char **argv, char **environ)
             free(lineptr);
             exit(EXIT_FAILURE);
         }
-        else if (child == 0)
+        if (child == 0)
         {
             /*runs command and checks value simultaneously*/
             if (execve(av[0], av, environ) == -1)
