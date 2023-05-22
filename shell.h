@@ -9,5 +9,7 @@
 #include <string.h>
 
 void prompt(char **argv, char **env);
+void forkexe(char *str, char **argv, char **env);
+char *_strtok(char *str, const char *delim);
 
 #endif /*SHELL_H*/
