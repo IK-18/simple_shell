@@ -3,10 +3,10 @@
 
 /**
  * prompt - displays a prompt and waits and responds to user input
- * @argv - array containing user input
- * @env - environment variable
+ * @argv: array containing user input
+ * @env: environment variable
  *
- * Return - Nothing
+ * Return: Nothing
  */
 
 void prompt(char **argv, char **env)
