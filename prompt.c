@@ -13,9 +13,8 @@ void prompt(char **argv, char **env)
 {
 	/*handles address of line in *lineptr and size in n within getline*/
 	char *lineptr = NULL;
-	size_t n = 0;
 	/*number of characters read*/
-	ssize_t char_len;
+	ssize_t char_len, n = 0;
 	char *av[MAX_CMD];
 	int i, j;
 
@@ -40,13 +39,13 @@ void prompt(char **argv, char **env)
 					lineptr[i] = 0;
 				i++;
 			}
-			/**
-			 * stores the user input as av looping through each value
-			 * */
+			/*stores the user input as av looping through each value*/
 			j = 0;
 			av[j] = _strtok(lineptr, " ");
 			while (av[j])
 				av[++j] = _strtok(NULL, " ");
+			if (_strcmp("exit", lineptr))
+				break;
 			forkexe(lineptr, av, env);
 		}
 	}
