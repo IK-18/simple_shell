@@ -22,7 +22,7 @@ void prompt(char **argv, char **env)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			printf("IKShell$ ", argv[0]);
+			printf("IKShell$ ");
 		if (argv)
 		{
 			char_len = getline(&lineptr, &n, stdin);
