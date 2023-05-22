@@ -44,9 +44,9 @@ void prompt(char **argv, char **env)
 			 * stores the user input as av looping through each value
 			 * */
 			j = 0;
-			av[j] = _strtok(lineptr, " ");
+			av[j] = strtok(lineptr, " ");
 			while (av[j])
-				av[++j] = _strtok(NULL, " ");
+				av[++j] = strtok(NULL, " ");
 			forkexe(lineptr, av, env);
 		}
 	}
