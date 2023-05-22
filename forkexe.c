@@ -19,7 +19,7 @@ void forkexe(char *str, char **argv, char **env)
 	if (child == 0)
 	{
 		/*runs command and checks value simultaneously*/
-		if (execve(av[0], av, env) == -1)
+		if (execve(argv[0], argv, env) == -1)
 			printf("IKShell $: No such file or directory\n");
 	}
 	/*monitor the status of the child process and wait*/
