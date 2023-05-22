@@ -13,8 +13,9 @@ void prompt(char **argv, char **env)
 {
 	/*handles address of line in *lineptr and size in n within getline*/
 	char *lineptr = NULL;
+	size_t n = 0;
 	/*number of characters read*/
-	ssize_t char_len, n = 0;
+	ssize_t char_len;
 	char *av[MAX_CMD];
 	int i, j;
 
