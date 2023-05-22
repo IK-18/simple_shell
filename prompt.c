@@ -4,7 +4,7 @@
 /**
  * prompt - displays a prompt and waits and responds to user input
  * @argv - array containing user input
- * @environ - environment variable
+ * @env - environment variable
  *
  * Return - Nothing
  */
