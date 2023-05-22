@@ -23,6 +23,7 @@ void prompt(char **argv, char **env)
 	{
 		if (isatty(STDIN_FILENO))
 			printf("IKShell$ ");
+		argv[0] = "IKShell$";
 		char_len = getline(&lineptr, &n, stdin);
 		/*frees the pointer after reading characters*/
 		if (char_len == -1)
