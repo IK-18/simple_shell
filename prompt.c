@@ -18,12 +18,12 @@ void prompt(char **argv, char **env)
 	ssize_t char_len;
 	char *av[MAX_CMD];
 	int i, j;
+	argv[0] = "IKShell$";
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			printf("IKShell$ ");
-		argv[0] = "IKShell$";
+			printf("%s ", argv[0]);
 		char_len = getline(&lineptr, &n, stdin);
 		/*frees the pointer after reading characters*/
 		if (char_len == -1)
