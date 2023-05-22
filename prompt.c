@@ -22,31 +22,32 @@ void prompt(char **argv, char **env)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			printf("%s ", argv[0]);
-		if (argv[0])
-			continue;
-		char_len = getline(&lineptr, &n, stdin);
-		/*frees the pointer after reading characters*/
-		if (char_len == -1)
+			printf("IKShell$ ", argv[0]);
+		if (argv)
 		{
-			free(lineptr);
-			exit(EXIT_FAILURE);
+			char_len = getline(&lineptr, &n, stdin);
+			/*frees the pointer after reading characters*/
+			if (char_len == -1)
+			{
+				free(lineptr);
+				exit(EXIT_FAILURE);
+			}
+			/*checks for newline character*/
+			i = 0;
+			while (lineptr[i])
+			{
+				if (lineptr[i] == '\n')
+					lineptr[i] = 0;
+				i++;
+			}
+			/**
+			 * stores the user input as av looping through each value
+			 * */
+			j = 0;
+			av[j] = _strtok(lineptr, " ");
+			while (av[j])
+				av[++j] = _strtok(NULL, " ");
+			forkexe(lineptr, av, env);
 		}
-		/*checks for newline character*/
-		i = 0;
-		while (lineptr[i])
-		{
-			if (lineptr[i] == '\n')
-				lineptr[i] = 0;
-			i++;
-		}
-		/**
-		 * stores the user input as av looping through each value
-		 * */
-		j = 0;
-		av[j] = _strtok(lineptr, " ");
-		while (av[j])
-			av[++j] = _strtok(NULL, " ");
-		forkexe(lineptr, av, env);
 	}
 }
