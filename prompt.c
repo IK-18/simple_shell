@@ -45,7 +45,7 @@ void prompt(char **argv, char **env)
 			av[j] = _strtok(lineptr, " ");
 			while (av[j])
 				av[++j] = _strtok(NULL, " ");
-			if (strcmp("exit", av[0]))
+			if (_strcmp("exit", av[0]))
 				break;
 			forkexe(lineptr, av, env);
 		}
