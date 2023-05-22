@@ -10,15 +10,15 @@
 
 char *_strtok(char *str, const char *delim)
 {
-	static char *s;
-	char *token;
-	if (str)
+	static char *s = NULL;
+	char *token = NULL;
+	if (str != NULL)
 		s = str;
-	if (s && strlen(s))
+	if (s != NULL && strlen(s))
 	{
 		const size_t dlen = strlen(delim);
 		/*skip consecutive delimiters*/
-		while (*s && memchr(delim, *s, dlen))
+		while (*s && memchr(delim, *s, dlen) != NULL)
 			++s;
 		/**
 		 * if the beginning of the token is not at the end of the string
@@ -30,7 +30,7 @@ char *_strtok(char *str, const char *delim)
 			/*search for the next non-delim character, if any*/
 			while (*s)
 			{
-				if (memchr(delim, *s, dlen))
+				if (memchr(delim, *s, dlen) != NULL)
 					break;
 				else
 					++s;
