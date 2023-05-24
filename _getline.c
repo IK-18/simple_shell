@@ -30,7 +30,7 @@ int _getline(char **lineptr, size_t *n)
 		newline = memchr(buf_pos, '\n', buf_remaining);
 		if (newline)
 		{
-			int num_chars = newline - buf_pos + 1;
+			num_chars = newline - buf_pos + 1;
 			memcpy(line, buf_pos, num_chars);
 			line[num_chars - 1] = '\0';
 			buf_pos = newline + 1;
