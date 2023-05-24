@@ -32,12 +32,12 @@ void prompt(char **env)
 				break;
 			nc = fchk(av[0]);
 			inbt = inbuilt(av[0]);
-			if (!inbt && nc != NULL)
+			if (inbt == 0 && nc != NULL)
 				av[0] = nc;
 			path = ptchk(av[0]);
 			if (path)
 				forkexe(av, env);
-			if (nc == NULL && !path)
+			if (nc == NULL && path == 0 && inbt == 0)
 				_puts("./shell: No such file or directory\n");
 		}
 	}
