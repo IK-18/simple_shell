@@ -5,7 +5,7 @@
  * still run via execve even though processing user input
  * */
 
-void forkexe(char *str, char **av, char **env)
+void forkexe(char **av, char **env)
 {
 	pid_t child;
 	int status;
@@ -14,14 +14,14 @@ void forkexe(char *str, char **av, char **env)
 	/*checks return value of fork*/
 	if (child == -1)
 	{
-		free(str);
+		perror("Error: Fork issue");
 		exit(EXIT_FAILURE);
 	}
 	if (child == 0)
 	{
 		/*runs command and checks value simultaneously*/
 		if (execve(av[0], av, env) == -1)
-			printf("IKShell$: No such file or directory\n");
+			perror("IKShell$: No such file or directory\n");
 	}
 	/*monitor the status of the child process and wait*/
 	else
