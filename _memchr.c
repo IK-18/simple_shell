@@ -12,7 +12,9 @@
 void *_memchr(const void *s, int c, size_t n)
 {
 	const unsigned char *p = s;
-	for (size_t i = 0; i < n; i++)
+	size_t i;
+
+	for (i = 0; i < n; i++)
 	{
 		if (*p == c)
 		{

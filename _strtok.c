@@ -12,6 +12,7 @@ char *_strtok(char *str, const char *delim)
 {
 	static char *s = NULL;
 	char *token = NULL;
+
 	if (str != NULL)
 		s = str;
 	if (s != NULL && strlen(s))

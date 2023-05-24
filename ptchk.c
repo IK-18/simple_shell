@@ -34,7 +34,7 @@ int ptchk(char *str)
 	}
 	ptr[j] = '\0';
 	x = fchk(ptr);
-	if (j != NULL)
+	if (j)
 	{
 		free(ptr);
 		return (1);

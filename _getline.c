@@ -13,7 +13,7 @@ int _getline(char **lineptr, size_t *n)
 	static char buffer[1024];
 	static char *buf_pos = buffer;
 	static size_t buf_remaining = 0;
-	int total_read = 0;
+	int num_chars, total_read = 0;
 	char *line = *lineptr;
 
 	if (line == NULL || *n == 0)
@@ -38,7 +38,7 @@ int _getline(char **lineptr, size_t *n)
 			total_read += num_chars;
 			return total_read;
 		}
-		int num_chars = buf_remaining;
+		num_chars = buf_remaining;
 		memcpy(line, buf_pos, num_chars);
 		line += num_chars;
 		buf_remaining = 0;

@@ -43,7 +43,6 @@ void prompt(char **env)
 				_puts("./shell: No such file or directory\n");
 		}
 	}
-	free(path);
 	free(nc);
 	free(lineptr);
 	free(av);
