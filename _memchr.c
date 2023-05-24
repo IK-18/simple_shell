@@ -18,9 +18,9 @@ void *_memchr(const void *s, int c, size_t n)
 	{
 		if (*p == c)
 		{
-			return (void *)p;
+			return ((void *)p);
 		}
 		p++;
 	}
-	return NULL;
+	return (NULL);
 }

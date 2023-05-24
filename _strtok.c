@@ -10,7 +10,7 @@
 
 char *_strtok(char *str, const char *delim)
 {
-	static char *s = NULL;
+	static char *s;
 	char *token = NULL;
 
 	if (str != NULL)
@@ -24,7 +24,7 @@ char *_strtok(char *str, const char *delim)
 		/**
 		 * if the beginning of the token is not at the end of the string
 		 * set our retval to the first non-delim char
-		 * */
+		 */
 		if (*s)
 		{
 			token = s;
@@ -44,5 +44,5 @@ char *_strtok(char *str, const char *delim)
 			}
 		}
 	}
-	return token;
+	return (token);
 }

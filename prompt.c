@@ -11,7 +11,7 @@
 void prompt(char **env)
 {
 	char *lineptr, *nc;
-	size_t n = 20, path = 4;
+	size_t n = 20, inbt = 0, path = 4;
 	ssize_t char_len;
 	char **av;
 
@@ -21,7 +21,6 @@ void prompt(char **env)
 			_puts("IKShell$ ");
 		lineptr = malloc(sizeof(char) * n);
 		char_len = _getline(&lineptr, &n);
-		/*frees the pointer after reading characters if invalid*/
 		if (char_len == -1)
 		{
 			free(lineptr);
@@ -29,12 +28,12 @@ void prompt(char **env)
 		}
 		if (*lineptr != '\n')
 		{
-			/*stores the user input as av*/
 			av = chrstrtok(lineptr);
 			if (_strcmp("exit", av[0]))
 				break;
 			nc = fchk(av[0]);
-			if (nc != NULL)
+			inbt = inbuilt(av[0]);
+			if (!inbt && nc != NULL)
 				av[0] = nc;
 			path = ptchk(av[0]);
 			if (path)
