@@ -33,8 +33,7 @@ char *_strtok(char *str, const char *delim)
 			{
 				if (memchr(delim, *s, dlen) != NULL)
 					break;
-				else
-					++s;
+				++s;
 			}
 			if (*s)
 			{

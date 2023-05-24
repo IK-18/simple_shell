@@ -9,9 +9,8 @@
 
 int inbuilt(char *str)
 {
-	char **tmp;
+	char **tmp, cwd[1024];
 	int i = 0;
-	char cwd[1024];
 
 	tmp = malloc(sizeof(char *) * 3);
 	if (tmp == NULL)
@@ -37,11 +36,8 @@ int inbuilt(char *str)
 		return (2);
 	case 2:
 		if (getcwd(cwd, sizeof(cwd)) == NULL)
-		{
-			free(cwd);
 			return (0);
-		}
-		_puts("Current working directory: ");
+		_puts("\nPath\n----");
 		_puts(cwd);
 		free(tmp);
 		return (1);
