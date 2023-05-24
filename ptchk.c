@@ -9,7 +9,7 @@
 
 int ptchk(char *str)
 {
-	char *bin = "/bin/", *ptr;
+	char *bin = "/bin/", *ptr, *tmp;
 	int i = 0, j = 0;
 
 	ptr = malloc(sizeof(char) * 50);
@@ -33,10 +33,8 @@ int ptchk(char *str)
 		i++;
 	}
 	ptr[j] = '\0';
-	char *tmp;
-
 	tmp = fchk(ptr);
-	if (j)
+	if (tmp != NULL)
 	{
 		free(ptr);
 		return (1);
