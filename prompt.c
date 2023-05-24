@@ -2,7 +2,6 @@
 
 /**
  * prompt - displays a prompt and waits and responds to user input
- * @argv: array containing user input
  * @env: environment variable
  *
  * Return: Nothing
