@@ -37,8 +37,8 @@ int main(int argc, char *argv[], char *env[])
 				_puts("exit");
 				break;
 			}
-
 			inbt = inbuilt(av[0]);
+			printf(inbt);
 			nc = fchk(av[0]);
 			if (inbt == 0 && nc != NULL)
 				av[0] = nc;
