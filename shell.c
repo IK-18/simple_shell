@@ -33,10 +33,7 @@ int main(int argc, char *argv[], char *env[])
 		{
 			av = chrstrtok(lineptr);
 			if (_strcmp("exit", av[0]) == 0)
-			{
-				_puts("exit");
 				break;
-			}
 			inbt = inbuilt(av[0]);
 			printf("%ld", inbt);
 			nc = fchk(av[0]);
