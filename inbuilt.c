@@ -20,7 +20,7 @@ int inbuilt(char *str)
 	tmp[2] = "pwd";
 	while (i < 3)
 	{
-		if (_strcmp(tmp[i], str))
+		if (_strcmp(tmp[i], str) == 0)
 			break;
 		i++;
 	}
