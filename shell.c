@@ -39,10 +39,8 @@ int main(int argc, char *argv[], char *env[])
 			if (nc != NULL)
 			{
 				av[0] = nc;
-				_puts(av[0]);
-				_puts("\n");
-				forkexe(av, env);
 			}
+			forkexe(av, env);
 		}
 	}
 	inbt++;
