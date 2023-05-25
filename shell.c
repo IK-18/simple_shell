@@ -34,11 +34,6 @@ int main(int argc, char *argv[], char *env[])
 			av = chrstrtok(lineptr);
 			if (_strcmp("exit", av[0]) == 0)
 				break;
-			/*inbt = inbuilt(av[0]);*/
-			nc = fchk(av[0]);
-			if (nc != NULL)
-				av[0] = nc;
-			_puts(av[0]);
 			path = ptchk(av[0]);
 			printf("%ld", path);
 			if (path == 1)
@@ -48,6 +43,7 @@ int main(int argc, char *argv[], char *env[])
 		}
 	}
 	inbt++;
+	nc = "hello";
 	free(nc);
 	free(lineptr);
 	free(av);
