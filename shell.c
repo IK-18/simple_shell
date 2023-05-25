@@ -35,13 +35,11 @@ int main(int argc, char *argv[], char *env[])
 			if (_strcmp("exit", av[0]) == 0)
 				break;
 			inbt = inbuilt(av[0]);
-			printf("%ld", inbt);
 			nc = fchk(av[0]);
-			_puts(nc);
 			if (inbt == 0 && nc != NULL)
 				av[0] = nc;
-			_puts(av[0]);
 			path = ptchk(av[0]);
+			printf("%ld", nc);
 			if (path == 1)
 				forkexe(av, env);
 			if (nc == NULL && path == 0 && inbt == 0)
