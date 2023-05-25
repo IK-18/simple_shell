@@ -43,8 +43,6 @@ int main(int argc, char *argv[], char *env[])
 			 * if (inbt == 0 && nc != NULL)
 			 * 	av[0] = nc;
 			 */
-			nc = _strcat("/bin/", av[0]);
-			av[0] = nc;
 			path = ptchk(av[0]);
 			if (path == 1)
 				forkexe(av, env);
