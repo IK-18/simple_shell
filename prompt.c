@@ -28,14 +28,14 @@ void prompt(char **env)
 		if (*lineptr != '\n')
 		{
 			av = chrstrtok(lineptr);
-			if (_strcmp("exit", av[0]))
+			if (_strcmp("exit", av[0]) == 1)
 				break;
-			nc = fchk(av[0]);
 			inbt = inbuilt(av[0]);
+			nc = fchk(av[0]);
 			if (inbt == 0 && nc != NULL)
 				av[0] = nc;
 			path = ptchk(av[0]);
-			if (path)
+			if (path == 1)
 				forkexe(av, env);
 			if (nc == NULL && path == 0 && inbt == 0)
 				_puts("its here./shell: No such file or directory\n");
