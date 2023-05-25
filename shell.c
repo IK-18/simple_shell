@@ -40,6 +40,7 @@ int main(int argc, char *argv[], char *env[])
 			_puts(nc);
 			if (inbt == 0 && nc != NULL)
 				av[0] = nc;
+			_puts(av[0]);
 			path = ptchk(av[0]);
 			if (path == 1)
 				forkexe(av, env);
