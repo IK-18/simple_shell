@@ -21,7 +21,7 @@ char *fchk(char *str)
 	{
 		/*stores name of file in loop and compares*/
 		tmp = ent->d_name;
-		if (_strcmp(tmp, str))
+		if (_strcmp(tmp, str) == 1)
 		{
 			suff = _strcat("/bin/", str);
 			closedir(dir);
