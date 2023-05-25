@@ -42,8 +42,8 @@ int main(int argc, char *argv[], char *env[])
 			 * nc = fchk(av[0]);
 			 * if (inbt == 0 && nc != NULL)
 			 * 	av[0] = nc;
-			 * path = ptchk(av[0]);
 			 */
+			path = ptchk(av[0]);
 			if (path == 1)
 				forkexe(av, env);
 			/** if (nc == NULL && path == 0 && inbt == 0)
@@ -51,7 +51,6 @@ int main(int argc, char *argv[], char *env[])
 			 */
 		}
 	}
-	path++;
 	inbt++;
 	nc = "hello";
 	free(nc);
