@@ -23,5 +23,6 @@ int _getline(char **lineptr, size_t *n);
 void *_memchr(const void *s, int c, size_t n);
 void *_memcpy(void *dest, const void *src, size_t n);
 int inbuilt(char *str);
+int _atoi(char *s);
 
 #endif /*SHELL_H*/
