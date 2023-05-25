@@ -10,7 +10,7 @@
 #include <dirent.h>
 
 void prompt(char **env);
-void forkexe(char **argv, char **env);
+void forkexe(char **argv, char *env[]);
 char *_strtok(char *str, const char *delim);
 int _strcmp(char *s1, char *s2);
 char **chrstrtok(char *str);

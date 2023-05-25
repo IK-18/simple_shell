@@ -9,17 +9,17 @@
  * Return: nothing
  */
 
-void forkexe(char **av, char **env)
+void forkexe(char **av, char *env[])
 {
 	pid_t child;
 	int status;
 
 	child = fork(); /*system call that creates a child process from parent*/
 	/*checks return value of fork*/
-	if (child == -1)
+	if (child < 0)
 	{
 		perror("Error: Fork issue");
-		exit(EXIT_FAILURE);
+		return;
 	}
 	if (child == 0)
 	{

@@ -9,7 +9,7 @@
  * Return: 0 on succes, 1 on failure
  */
 
-int main(int argc, char **argv, char **env)
+int main(int argc, char *argv[], char *env[])
 {
 	char *lineptr, *nc;
 	size_t n = 20, inbt = 0, path = 4;
@@ -32,8 +32,8 @@ int main(int argc, char **argv, char **env)
 		if (*lineptr != '\n')
 		{
 			av = chrstrtok(lineptr);
-			if (_strcmp("exit", av[0]) == 1)
-				break;
+			if (_strcmp("exit", av[0]) == 0)
+				exit(av[1]);
 			inbt = inbuilt(av[0]);
 			nc = fchk(av[0]);
 			if (inbt == 0 && nc != NULL)
