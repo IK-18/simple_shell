@@ -40,7 +40,6 @@ int main(int argc, char *argv[], char *env[])
 			{
 				av[0] = nc;
 			}
-			_puts(av[0]);
 			forkexe(av, env);
 		}
 	}
