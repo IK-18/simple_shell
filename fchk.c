@@ -32,5 +32,6 @@ char *fchk(char *str)
 		ent = readdir(dir);
 	}
 	closedir(dir);
+	_puts("Its the loop thats broken");
 	return (NULL);
 }

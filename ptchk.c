@@ -38,7 +38,5 @@ int ptchk(char *str)
 		free(ptr);
 		return (1);
 	}
-	else
-		_puts("Its in fchk");
 	return (0);
 }
