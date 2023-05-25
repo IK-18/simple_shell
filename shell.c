@@ -37,6 +37,7 @@ int main(int argc, char *argv[], char *env[])
 			inbt = inbuilt(av[0]);
 			printf("%ld", inbt);
 			nc = fchk(av[0]);
+			_puts(nc);
 			if (inbt == 0 && nc != NULL)
 				av[0] = nc;
 			path = ptchk(av[0]);
