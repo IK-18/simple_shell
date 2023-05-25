@@ -37,6 +37,7 @@ int ptchk(char *str)
 	{
 		_puts(tmp);
 		free(ptr);
+		free(tmp);
 		return (1);
 	}
 	return (0);
