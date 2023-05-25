@@ -39,7 +39,7 @@ int main(int argc, char *argv[], char *env[])
 			if (inbt == 0 && nc != NULL)
 				av[0] = nc;
 			path = ptchk(av[0]);
-			printf("%ld", nc);
+			printf("%ld", path);
 			if (path == 1)
 				forkexe(av, env);
 			if (nc == NULL && path == 0 && inbt == 0)
