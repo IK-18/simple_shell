@@ -38,7 +38,7 @@ void prompt(char **env)
 			if (path)
 				forkexe(av, env);
 			if (nc == NULL && path == 0 && inbt == 0)
-				_puts("./shell: No such file or directory\n");
+				_puts("its here ./shell: No such file or directory\n");
 		}
 	}
 	free(nc);
