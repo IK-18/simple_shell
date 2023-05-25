@@ -20,7 +20,7 @@ char *fchk(char *str)
 	{
 		/*stores name of file in loop and compares*/
 		tmp = ent->d_name;
-		if (_strcmp(tmp, str) == 0)
+		if (strcmp(tmp, str) == 0)
 		{
 			suff = _strcat(bin, str);
 			_puts("I worked");
