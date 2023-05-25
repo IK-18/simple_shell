@@ -32,6 +32,7 @@ int main(int argc, char *argv[], char *env[])
 		if (*lineptr != '\n')
 		{
 			av = chrstrtok(lineptr);
+			_puts(av[0]);
 			if (_strcmp("exit", av[0]) == 0)
 			{
 				if (av[1])
