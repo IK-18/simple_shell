@@ -35,14 +35,13 @@ int main(int argc, char *argv[], char *env[])
 			if (_strcmp("exit", av[0]) == 0)
 				break;
 			/*inbt = inbuilt(av[0]);*/
-
-			path = ptchk(av[0]);
-			printf("%ld", path);
-			if (path == 1)
+			nc = fchk(av[0]);
+			if (nc != NULL)
 				forkexe(av, env);
 		}
 	}
 	inbt++;
+	path++;
 	nc = "hello";
 	free(nc);
 	free(lineptr);
