@@ -10,7 +10,7 @@
 char *fchk(char *str)
 {
 	DIR *dir = opendir("/bin/");
-	char *tmp, *suff;
+	char *tmp, suff[50], bin[50] = "/bin/";
 	struct dirent *ent;
 
 	if (dir == NULL)
@@ -21,9 +21,9 @@ char *fchk(char *str)
 	{
 		/*stores name of file in loop and compares*/
 		tmp = ent->d_name;
-		if (_strcmp(tmp, str) == 1)
+		if (_strcmp(tmp, str) == 0)
 		{
-			suff = _strcat("/bin/", str);
+			suff = _strcat(bin, str);
 			closedir(dir);
 			return (suff);
 		}
