@@ -45,7 +45,6 @@ int main(int argc, char *argv[], char *env[])
 	}
 	inbt++;
 	path++;
-	nc = "hello";
 	free(nc);
 	free(lineptr);
 	free(av);
