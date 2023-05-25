@@ -51,6 +51,9 @@ int main(int argc, char *argv[], char *env[])
 			 */
 		}
 	}
+	path++;
+	inbt++;
+	nc = "hello";
 	free(nc);
 	free(lineptr);
 	free(av);
