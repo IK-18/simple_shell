@@ -35,10 +35,9 @@ int ptchk(char *str)
 	tmp = fchk(ptr);
 	if (tmp != NULL)
 	{
+		_puts(tmp);
 		free(ptr);
 		return (1);
 	}
-	else
-		_puts("Back in fchk again");
 	return (0);
 }
