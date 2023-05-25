@@ -10,7 +10,7 @@
 char *fchk(char *str)
 {
 	DIR *dir = opendir("/bin/");
-	char *tmp, *suff, *bin = "/bin/";
+	char *tmp, *suff, bin[50] = "/bin/";
 	struct dirent *ent;
 
 	if (dir == NULL)
