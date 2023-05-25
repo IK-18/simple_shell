@@ -32,7 +32,9 @@ int ptchk(char *str)
 		i++;
 	}
 	ptr[j] = '\0';
+	_puts(ptr);
 	tmp = fchk(ptr);
+	_puts(tmp);
 	if (tmp != NULL)
 	{
 		_puts("I worked. Its 1.");
