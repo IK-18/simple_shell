@@ -25,7 +25,6 @@ int ptchk(char *str)
 		}
 		i++;
 	}
-	/*concatenates*/
 	while (str[i] != '\0')
 	{
 		ptr[j] = str[i];
