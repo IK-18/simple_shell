@@ -34,8 +34,10 @@ int main(int argc, char *argv[], char *env[])
 			av = chrstrtok(lineptr);
 			if (_strcmp("exit", av[0]) == 0)
 				break;
-			path = ptchk(av[0]);
-			printf("%ld", path);
+			/*inbt = inbuilt(av[0]);*/
+			nc = fchk(av[0]);
+			if (nc != NULL)
+				path = ptchk(nc);
 			if (path == 1)
 				forkexe(av, env);
 		}
