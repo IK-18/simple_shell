@@ -12,7 +12,7 @@ int ptchk(char *str)
 	char *bin = "/bin/", *ptr, *tmp;
 	int i = 0, j = 0;
 
-	ptr = malloc(sizeof(char) * 50);
+	ptr = malloc(sizeof(char *) * 50);
 	if (ptr == NULL)
 		return (0);
 	/*comparing each character to check bin*/
@@ -38,5 +38,7 @@ int ptchk(char *str)
 		free(ptr);
 		return (1);
 	}
+	else
+		_puts("Its in fchk");
 	return (0);
 }
