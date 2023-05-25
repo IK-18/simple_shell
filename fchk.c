@@ -26,12 +26,11 @@ char *fchk(char *str)
 		if (_strcmp(tmp, str) == 0)
 		{
 			suff = _strcat(bin, str);
+			_puts(suff);
 			closedir(dir);
 			return (suff);
 		}
-		ent = readdir(dir);
 	}
 	closedir(dir);
-	_puts("Its the loop thats broken");
 	return (NULL);
 }
