@@ -14,15 +14,14 @@ char *fchk(char *str)
 	struct dirent *ent;
 
 	if (dir == NULL)
-	{
-		_puts("I'm here");
 		return (NULL);
-	}
 	/*reads directory*/
 	while ((ent = readdir(dir)) != NULL)
 	{
 		/*stores name of file in loop and compares*/
 		tmp = ent->d_name;
+		_puts(tmp);
+		_puts("\n");
 		if (_strcmp(tmp, str) == 0)
 		{
 			suff = _strcat(bin, str);
