@@ -38,8 +38,6 @@ int main(int argc, char *argv[], char *env[])
 			printf("%ld", path);
 			if (path == 1)
 				forkexe(av, env);
-			if (nc == NULL && path == 0)
-				_puts("its here./shell: No such file or directory\n");
 		}
 	}
 	inbt++;
