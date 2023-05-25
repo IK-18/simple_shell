@@ -37,7 +37,10 @@ int main(int argc, char *argv[], char *env[])
 			/*inbt = inbuilt(av[0]);*/
 			nc = fchk(av[0]);
 			if (nc != NULL)
+			{
+				av[0] = nc;
 				forkexe(av, env);
+			}
 		}
 	}
 	inbt++;
