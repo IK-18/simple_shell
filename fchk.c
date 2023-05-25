@@ -9,7 +9,7 @@
 
 char *fchk(char *str)
 {
-	DIR *dir = opendir("/bin");
+	DIR *dir = opendir("/bin/");
 	char *tmp, *suff;
 	struct dirent *ent;
 
