@@ -38,7 +38,7 @@ int main(int argc, char *argv[], char *env[])
 				break;
 			}
 			inbt = inbuilt(av[0]);
-			printf("%d", inbt);
+			printf("%ld", inbt);
 			nc = fchk(av[0]);
 			if (inbt == 0 && nc != NULL)
 				av[0] = nc;
