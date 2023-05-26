@@ -11,20 +11,22 @@
 
 int main(int argc, char **argv, char **env)
 {
-	char *lineptr, **av, **path_list;
+	char lineptr[MAX_CMD_LEN], **av, **path_list;
 	size_t char_len;
-	ssize_t n = MAX_ARGS;
+	int nread;
 
 	if (argc > MAX_ARGS)
 		argv[MAX_ARGS] = NULL;
 	while (1)
 	{
 		prompt();
-		char_len = _getline(&lineptr, MAX_CMD_LEN, STDIN_FILENO);
-		if (char_len == -1)
-		{
-			free(lineptr);
+		nread = read(STDIN_FILENO, lineptr, MAX_CMD_LEN);
+		if (nread == -1)
 			exit(EXIT_FAILURE);
+		else if (nread == 0)
+		{
+			write(STDOUT_FILENO, "\n", 1);
+			exit(EXIT_SUCCESS);
 		}
 		char_len = _strlen(lineptr);
 		if (lineptr[char_len - 1] == '\n')
