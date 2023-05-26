@@ -22,13 +22,16 @@ int main(int argc, char **argv, char **env)
 	{
 		prompt();
 		while (i < MAX_CMD_LEN)
-			nread = read(STDIN_FILENO, lineptr + i, MAX_CMD_LEN - i);
-		if (nread == -1)
-			exit(EXIT_FAILURE);
-		else if (nread == 0)
 		{
-			write(STDOUT_FILENO, "\n", 1);
-			exit(EXIT_SUCCESS);
+			nread = read(STDIN_FILENO, lineptr + i, MAX_CMD_LEN - i);
+			if (nread == -1)
+				exit(EXIT_FAILURE);
+			else if (nread == 0)
+			{
+				write(STDOUT_FILENO, "\n", 1);
+				exit(EXIT_SUCCESS);
+			}
+			i += nread;
 		}
 		char_len = _strlen(lineptr);
 		if (lineptr[char_len - 1] == '\n')
