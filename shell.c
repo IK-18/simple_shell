@@ -11,7 +11,7 @@
 
 int main(int argc, char **argv, char **env)
 {
-	char lineptr[MAX_CMD_LEN], **av, **path_list;
+	char *lineptr, **av, **path_list;
 	size_t char_len;
 
 	if (argc > MAX_ARGS)
@@ -19,7 +19,7 @@ int main(int argc, char **argv, char **env)
 	while (1)
 	{
 		prompt();
-		char_len = _getline(&lineptr, &n, STDIN_FILENO);
+		char_len = _getline(&lineptr, MAX_CMD_LEN, STDIN_FILENO);
 		if (char_len == -1)
 		{
 			free(lineptr);
