@@ -23,7 +23,7 @@ int main(int argc, char **argv, char **env)
 		nread = read(STDIN_FILENO, lineptr, MAX_CMD_LEN);
 		if (nread == -1)
 			exit(EXIT_FAILURE);
-		else if (read_bytes == 0)
+		else if (nread == 0)
 		{
 			write(STDOUT_FILENO, "\n", 1);
 			exit(EXIT_SUCCESS);
