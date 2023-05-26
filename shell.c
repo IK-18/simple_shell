@@ -30,13 +30,12 @@ int main(int argc, char **argv, char **env)
 		char_len = _strlen(lineptr);
 		if (lineptr[char_len - 1] == '\n')
 			lineptr[char_len - 1] = '\0';
-		*av = parse_cmd(lineptr);
+		**av = parse_cmd(lineptr);
 		if (av == NULL)
 			continue;
 		path_list = ptchk(env);
 		execmd(av, env, path_list);
 	}
-	free(lineptr);
 	free(path_list);
 	return (0);
 }

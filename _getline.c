@@ -11,11 +11,11 @@
 
 ssize_t _getline(char *lineptr, ssize_t *n, int fd)
 {
-	size_t bufsize = *n;
-	ssize_t pos = 0;
+	ssize_t pos, bufsize = *n;
 	int c, i;
 	char *newptr;
 
+	pos = 0;
 	if (!lineptr || !n)
 		return (-1);
 	if (!(lineptr))
