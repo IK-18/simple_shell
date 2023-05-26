@@ -15,7 +15,7 @@ char *get_cmd_path(char *cmd, char **path_list)
 	{
 		perror("Error: Path list is NULL.");
 		free(cmd_path);
-		return NULL;
+		return (NULL);
 	}
 	while (path_list[i] != NULL)
 	{

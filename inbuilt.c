@@ -10,6 +10,7 @@
 
 int inbuilt(char **args, char **env)
 {
+	int i;
 	char cwd[MAX_CMD_LEN];
 
 	if (_strcmp(args[0], "cd") == 0)
@@ -20,7 +21,7 @@ int inbuilt(char **args, char **env)
 		}
 		else if (chdir(args[1]) != 0)
 			perror("Error: Failed to change directory.");
-		return 1;
+		return (1);
 	}
 	else if (_strcmp(args[0], "pwd") == 0)
 	{
@@ -33,7 +34,7 @@ int inbuilt(char **args, char **env)
 			_puts(cwd);
 			_putchar('\n');
 		}
-		return 1;
+		return (1);
 	}
 	else if (_strcmp(args[0], "exit") == 0)
 	{
@@ -42,12 +43,12 @@ int inbuilt(char **args, char **env)
 	}
 	else if (_strcmp(args[0], "env") == 0)
 	{
-		for (int i = 0; env[i] != NULL; i++)
+		for (i = 0; env[i] != NULL; i++)
 		{
 			_puts(env[i]);
 			_putchar('\n');
 		}
-		return 1;
+		return (1);
 	}
-	return 0;
+	return (0);
 }

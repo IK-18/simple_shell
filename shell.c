@@ -41,9 +41,9 @@ int main(int argc, char **argv, char **env)
 			free(av);
 			continue;
 		}
-		execmd(av[0], av, envp, path_list);
+		execmd(av[0], av, env, path_list);
 		free(av);
 		free(path_list);
 	}
-	return 0;
+	return (0);
 }

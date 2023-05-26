@@ -10,7 +10,7 @@
 char **ptchk(char **envp)
 {
 	char **path_list, *path_env_var;
-	int paths_len, i;
+	int paths_len, i, j;
 
 	paths_len = 0;
 	path_list = malloc(MAX_ARGS * sizeof(char *));
@@ -31,10 +31,6 @@ char **ptchk(char **envp)
 				if (paths_len >= MAX_ARGS)
 				{
 					perror("Error: Too many directories in PATH.");
-					for (int j = 0; j < paths_len; j++)
-					{
-						free(path_list[j]);
-					}
 					free(path_list);
 					exit(EXIT_FAILURE);
 				}
