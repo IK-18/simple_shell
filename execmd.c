@@ -17,6 +17,8 @@ void execmd(char *cmd, char **av, char **env, char **path_list)
 	int status;
 	char *cmd_path = NULL;
 
+	if (inbuilt(av, env) == 1)
+		return;
 	pid = fork();
 	if (pid == -1)
 	{
