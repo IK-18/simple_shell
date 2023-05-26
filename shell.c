@@ -11,7 +11,7 @@
 
 int main(int argc, char **argv, char **env)
 {
-	char lineptr[MAX_CMD_LEN], *av[MAX_ARGS], **path_list;
+	char lineptr[MAX_CMD_LEN], **av, **path_list;
 	ssize_t n = MAX_CMD_LEN;
 	size_t char_len;
 	int nread;
