@@ -13,14 +13,16 @@ int main(int argc, char **argv, char **env)
 {
 	char lineptr[MAX_CMD_LEN], **av, **path_list;
 	size_t char_len;
-	int nread;
+	int nread, i, j;
 
+	i = 0;
 	if (argc > MAX_ARGS)
 		argv[MAX_ARGS] = NULL;
 	while (1)
 	{
 		prompt();
-		nread = read(STDIN_FILENO, lineptr, MAX_CMD_LEN);
+		while (i < MAX_CMD_LEN)
+			nread = read(STDIN_FILENO, lineptr + i, MAX_CMD_LEN - i);
 		if (nread == -1)
 			exit(EXIT_FAILURE);
 		else if (nread == 0)
