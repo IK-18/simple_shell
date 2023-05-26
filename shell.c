@@ -32,6 +32,8 @@ int main(int argc, char **argv, char **env)
 				exit(EXIT_SUCCESS);
 			}
 			i += nread;
+			if (lineptr[i] == '\n')
+				break;
 		}
 		char_len = _strlen(lineptr);
 		if (lineptr[char_len - 1] == '\n')
