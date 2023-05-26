@@ -13,22 +13,24 @@ int main(int argc, char **argv, char **env)
 {
 	char lineptr[MAX_CMD_LEN], *av[MAX_ARGS], **path_list;
 	ssize_t n = MAX_CMD_LEN;
-	ssize_t char_len;
+	size_t char_len;
+	int nread;
 
 	if (argc > MAX_ARGS)
 		argv[MAX_ARGS] = NULL;
 	while (1)
 	{
 		prompt();
-		char_len = _getline(&lineptr, &n, STDIN_FILENO);
-		if (char_len == -1)
+		nread = read(STDIN_FILENO, lineptr, n);
+		if (nread == -1)
 		{
 			free(lineptr);
 			exit(EXIT_FAILURE);
 		}
+		char_len = _strlen(lineptr);
 		if (lineptr[char_len - 1] == '\n')
 			lineptr[char_len - 1] = '\0';
-		**av = parse_cmd(lineptr);
+		*av = parse_cmd(lineptr);
 		if (av == NULL)
 			continue;
 		path_list = ptchk(env);
