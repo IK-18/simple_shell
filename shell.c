@@ -13,7 +13,7 @@ int main(int argc, char **argv, char **env)
 {
 	char lineptr[MAX_CMD_LEN], **av, **path_list;
 	size_t char_len;
-	int nread, i, j;
+	int nread, i;
 
 	i = 0;
 	if (argc > MAX_ARGS)
