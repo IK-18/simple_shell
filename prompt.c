@@ -10,6 +10,7 @@ void prompt(void)
 {
 	if (isatty(STDIN_FILENO))
 	{
-		write(STDOUT_FILENO, "$IKShell ", 9);
+		_puts("IKShell$ ");
+		fflush(stdout);
 	}
 }
