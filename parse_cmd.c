@@ -9,7 +9,7 @@
 
 char **parse_cmd(char *str)
 {
-	char *s[MAX_ARGS], *token;
+	char **s, *token;
 	int i = 0, j = 0;
 
 	s = malloc(8 * sizeof(char *));
