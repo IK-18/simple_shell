@@ -23,14 +23,11 @@ int main(int argc, char **argv, char **env)
 		prompt();
 		nread = read(STDIN_FILENO, lineptr, n);
 		if (nread == -1)
-		{
-			free(lineptr);
 			exit(EXIT_FAILURE);
-		}
 		char_len = _strlen(lineptr);
 		if (lineptr[char_len - 1] == '\n')
 			lineptr[char_len - 1] = '\0';
-		**av = parse_cmd(lineptr);
+		av = parse_cmd(lineptr);
 		if (av == NULL)
 			continue;
 		path_list = ptchk(env);
