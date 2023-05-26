@@ -23,11 +23,8 @@ int main(int argc, char **argv, char **env)
 		nread = read(STDIN_FILENO, lineptr, MAX_CMD_LEN);
 		if (nread == -1)
 			exit(EXIT_FAILURE);
-		else if (nread == 0)
-		{
-			write(STDOUT_FILENO, "\n", 1);
-			continue;
-		}
+		if (lineptr == '\n')
+			break;
 		char_len = _strlen(lineptr);
 		if (lineptr[char_len - 1] == '\n')
 			lineptr[char_len - 1] = '\0';
