@@ -13,6 +13,7 @@ int main(int argc, char **argv, char **env)
 {
 	char *lineptr, **av, **path_list;
 	size_t char_len;
+	ssize_t n = MAX_ARGS;
 
 	if (argc > MAX_ARGS)
 		argv[MAX_ARGS] = NULL;
