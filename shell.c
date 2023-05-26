@@ -24,10 +24,7 @@ int main(int argc, char **argv, char **env)
 		if (nread == -1)
 			exit(EXIT_FAILURE);
 		else if (nread == 0)
-		{
 			write(STDOUT_FILENO, "\n", 1);
-			exit(EXIT_SUCCESS);
-		}
 		char_len = _strlen(lineptr);
 		if (lineptr[char_len - 1] == '\n')
 			lineptr[char_len - 1] = '\0';
