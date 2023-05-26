@@ -10,7 +10,7 @@
 char **ptchk(char **envp)
 {
 	char **path_list, *path_env_var;
-	int paths_len, i, j;
+	int paths_len, i;
 
 	paths_len = 0;
 	path_list = malloc(MAX_ARGS * sizeof(char *));
