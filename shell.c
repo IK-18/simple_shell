@@ -13,18 +13,18 @@ int main(int argc, char **argv, char **env)
 {
 	char lineptr[MAX_CMD_LEN], **av, **path_list;
 	size_t char_len;
-	int nread;
 
 	if (argc > MAX_ARGS)
 		argv[MAX_ARGS] = NULL;
 	while (1)
 	{
 		prompt();
-		nread = read(STDIN_FILENO, lineptr, MAX_CMD_LEN);
-		if (nread == -1)
+		char_len = _getline(&lineptr, &n, STDIN_FILENO);
+		if (char_len == -1)
+		{
+			free(lineptr);
 			exit(EXIT_FAILURE);
-		else if (nread == 0)
-			write(STDOUT_FILENO, "\n", 1);
+		}
 		char_len = _strlen(lineptr);
 		if (lineptr[char_len - 1] == '\n')
 			lineptr[char_len - 1] = '\0';
