@@ -2,48 +2,50 @@
 
 /**
  * inbuilt - function that checks if string is an in-built command
- * @str: string to be checked
+ * @args: string array
+ * @env: environment variable
  *
  * Return: 1 if true, 0 if false
  */
 
-int inbuilt(char *str)
+int inbuilt(char **args, char **env)
 {
-	char **tmp, cwd[1024];
-	int i = 0;
-
-	tmp = malloc(sizeof(char *) * 3);
-	if (tmp == NULL)
-		return (0);
-	tmp[0] = "cd";
-	tmp[1] = "exit";
-	tmp[2] = "pwd";
-	while (i < 3)
+	if (_strcmp(args[0], "cd") == 0)
 	{
-		if (_strcmp(tmp[i], str) == 0)
-			break;
-		i++;
+		if (args[1] == NULL)
+			perror("Error: Missing directory argument for 'cd' command.");
+		else
+		{
+			if (chdir(args[1]) != 0)
+				perror("Error: Failed to change directory.");
+		}
+		return (1);
 	}
-	switch (i)
+	else if (_strcmp(args[0], "pwd") == 0)
 	{
-	case 0:
-		chdir(str);
-		free(tmp);
+		char cwd[MAX_CMD_LEN];
+		if (getcwd(cwd, sizeof(cwd)) != NULL)
+		{
+			write(STDOUT_FILENO, cwd, _strlen(cwd));
+			write(STDOUT_FILENO, "\n", 1);
+		}
+		else
+			perror("Error: Failed to get current working directory.");
 		return (1);
-	case 1:
-		_puts("bye");
-		free(tmp);
-		return (2);
-	case 2:
-		if (getcwd(cwd, sizeof(cwd)) == NULL)
-			return (0);
-		_puts("\nPath\n----");
-		_puts(cwd);
-		free(tmp);
+	}
+	else if (_strcmp(args[0], "exit") == 0)
+	{
+		write(STDOUT_FILENO, "Exiting the shell...\n", 21);
+		exit(0);
+	}
+	else if (_strcmp(args[0], "env") == 0)
+	{
+		for (int i = 0; env[i] != NULL; i++)
+		{
+			write(STDOUT_FILENO, env[i], _strlen(env[i]));
+			write(STDOUT_FILENO, "\n", 1);
+		}
 		return (1);
-	default:
-		free(tmp);
-		return (0);
 	}
 	return (0);
 }

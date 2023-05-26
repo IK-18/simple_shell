@@ -2,51 +2,36 @@
 
 /**
  * main - main function
- * @argc: arguent counter
- * @argv: argument array
  * @env: environment variable
  *
  * Return: 0 on succes, 1 on failure
  */
 
-int main(int argc, char *argv[], char *env[])
+int main(char **env)
 {
-	char *lineptr, *nc;
-	size_t n = 20, inbt = 0, path = 4;
+	char lineptr[MAX_CMD_LEN], *av[MAX_ARGS], **path_list;
+	size_t n = MAX_CMD_LEN;
 	ssize_t char_len;
-	char **av;
 
-	if (argc > 1)
-		argv[1] = NULL;
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
-			_puts("IKShell$ ");
+		prompt();
 		lineptr = malloc(sizeof(char) * n);
-		char_len = _getline(&lineptr, &n);
+		char_len = _getline(&lineptr, &n, stdin);
 		if (char_len == -1)
 		{
 			free(lineptr);
 			exit(EXIT_FAILURE);
 		}
-		if (*lineptr != '\n')
-		{
-			av = chrstrtok(lineptr);
-			if (_strcmp("exit", av[0]) == 0)
-				break;
-			/*inbt = inbuilt(av[0]);*/
-			nc = fchk(av[0]);
-			if (nc != NULL)
-			{
-				av[0] = nc;
-			}
-			forkexe(av, env);
-		}
+		if (lineptr[char_len - 1] == '\n')
+			lineptr[char_len - 1] = '\0';
+		av = parse_cmd(lineptr);
+		if (av == NULL)
+			continue;
+		path_list = ptchk(env);
+		execmd(av, env, path_list);
 	}
-	inbt++;
-	path++;
-	free(nc);
 	free(lineptr);
-	free(av);
-	exit(EXIT_SUCCESS);
+	free(path_list);
+	return (0);
 }

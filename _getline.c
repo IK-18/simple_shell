@@ -4,45 +4,49 @@
  * _getline - function to store an entire line from input
  * @lineptr: pointer to input buffer
  * @n: size of input buffer
+ * @fd: file descriptor
  *
  * Return: number of characters
  */
 
-int _getline(char **lineptr, size_t *n)
+ssize_t _getline(char **lineptr, size_t *n, int fd)
 {
-	static char buffer[1024];
-	static char *buf_pos = buffer;
-	static size_t buf_remaining;
-	int num_chars, total_read = 0;
-	char *newline, *line;
+	size_t bufsize = *n;
+	ssize_t pos = 0;
+	int c;
 
-	line = *lineptr;
-	if (line == NULL || *n == 0)
+	if (!lineptr || !n)
+		return (-1);
+	if (!(*lineptr))
 	{
-		*lineptr = malloc(1024);
-		if (*lineptr == NULL)
+		*lineptr = malloc(bufsize);
+		if (!(*lineptr))
 			return (-1);
-		*n = 1024;
-		line = *lineptr;
 	}
-	while (buf_remaining || (buf_remaining = read(STDIN_FILENO, buffer, 1024)))
+	while (1)
 	{
-		newline = memchr(buf_pos, '\n', buf_remaining);
-		if (newline)
+		if (read(fd, &c, 1) <= 0)
 		{
-			num_chars = newline - buf_pos + 1;
-			memcpy(line, buf_pos, num_chars);
-			line[num_chars - 1] = '\0';
-			buf_pos = newline + 1;
-			buf_remaining -= num_chars;
-			total_read += num_chars;
-			return (total_read);
+			if (pos == 0)
+				return (-1);
+			break;
 		}
-		num_chars = buf_remaining;
-		memcpy(line, buf_pos, num_chars);
-		line += num_chars;
-		buf_remaining = 0;
-		buf_pos = buffer;
+		if (pos >= bufsize - 1)
+		{
+			bufsize *= 2;
+			char *newptr = (char *)malloc(bufsize);
+			if (!newptr)
+				return (-1);
+			for (int i = 0; i < pos; i++)
+				newptr[i] = (*lineptr)[i];
+			free(*lineptr);
+			*lineptr = newptr;
+			*n = bufsize;
+		}
+		(*lineptr)[pos++] = c;
+		if (c == '\n')
+			break;
 	}
-	return (total_read ? total_read : -1);
+	(*lineptr)[pos] = '\0';
+	return (pos);
 }

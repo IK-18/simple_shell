@@ -2,41 +2,36 @@
 
 /**
  * ptchk - checks if the string has the path "/bin"
- * @str: string to be checked
+ * @envp: environment variable
  *
  * Return: 0 if false, 1 if true
  */
 
-int ptchk(char *str)
+char **ptchk(char **envp)
 {
-	char *bin = "/bin/", *ptr, *tmp;
-	int i = 0, j = 0;
+	char **path_list, *path_env_var;
+	int paths_len = 0, i, j = 0;
 
-	ptr = malloc(sizeof(char *) * 50);
-	if (ptr == NULL)
-		return (0);
-	/*comparing each character to check bin*/
-	while (bin[i] != '\0')
+	*path_list = malloc(MAX_ARGS * sizeof(char *));
+	for (i = 0; envp[i] != NULL; i++)
 	{
-		if (bin[i] != str[i])
+		if (_strncmp(envp[i], "PATH=", 5) == 0)
 		{
-			free(ptr);
-			return (0);
+			path_env_var = envp[i] + 5;
+			path_list[paths_len] = _strtok(path_env_var, ":");
+			while (path_list[paths_len] != NULL)
+			{
+				paths_len++;
+				if (paths_len >= MAX_ARGS)
+				{
+					perror("Error: Too many diretories in PATH");
+					free(path_list);
+					exit(EXIT_FAILURE);
+				}
+				path_list[paths_len] = _strtok(NULL, ":");
+			}
+			break;
 		}
-		i++;
 	}
-	while (str[i] != '\0')
-	{
-		ptr[j] = str[i];
-		j++;
-		i++;
-	}
-	ptr[j] = '\0';
-	tmp = fchk(ptr);
-	if (tmp != NULL)
-	{
-		free(ptr);
-		return (1);
-	}
-	return (0);
+	return (path_list);
 }

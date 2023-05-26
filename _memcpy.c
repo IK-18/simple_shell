@@ -16,8 +16,6 @@ void *_memcpy(void *dest, const void *src, size_t n)
 	size_t i;
 
 	for (i = 0; i < n; i++)
-	{
 		d[i] = s[i];
-	}
 	return (dest);
 }
