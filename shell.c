@@ -26,7 +26,7 @@ int main(int argc, char **argv, char **env)
 		else if (nread == 0)
 		{
 			write(STDOUT_FILENO, "\n", 1);
-			exit(EXIT_SUCCESS);
+			continue;
 		}
 		char_len = _strlen(lineptr);
 		if (lineptr[char_len - 1] == '\n')
