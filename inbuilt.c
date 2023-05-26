@@ -26,6 +26,7 @@ int inbuilt(char **args, char **env)
 	else if (_strcmp(args[0], "pwd") == 0)
 	{
 		char cwd[MAX_CMD_LEN];
+
 		if (getcwd(cwd, sizeof(cwd)) != NULL)
 		{
 			write(STDOUT_FILENO, cwd, _strlen(cwd));
