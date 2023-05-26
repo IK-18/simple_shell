@@ -8,9 +8,5 @@
 
 void prompt(void)
 {
-	if (isatty(STDIN_FILENO))
-	{
-		_puts("IKShell$ ");
-		fflush(stdout);
-	}
+	_puts("IKShell$ ");
 }
