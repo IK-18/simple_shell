@@ -21,7 +21,7 @@ void execmd(char **av, char **env, char **path_list)
 	{
 		execve(av[0], av, env);
 		perror("Error: Unable to execute command.");
-		exit(EXIT_FAILURE);
+		return (1);
 	}
 	for (i = 0; path_list[i] != NULL; i++)
 	{
@@ -32,7 +32,7 @@ void execmd(char **av, char **env, char **path_list)
 		{
 			execve(path, av, env);
 			perror("Error: Unable to exexcute command.");
-			exit(EXIT_FAILURE);
+			return (1);
 		}
 	}
 	perror("Error: Command not found.");
