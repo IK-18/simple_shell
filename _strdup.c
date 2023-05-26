@@ -17,7 +17,7 @@ char *_strdup(const char *str)
 		len++;
 	newstr = malloc(sizeof(char) * (len + 1));
 	if (newstr == NULL)
-		return NULL;
+		return (NULL);
 	for (i = 0; i < len; i++)
 		*(newstr + i) = *(str + i);
 	*(newstr + i) = '\0';

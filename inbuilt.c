@@ -10,6 +10,8 @@
 
 int inbuilt(char **args, char **env)
 {
+	int i;
+
 	if (_strcmp(args[0], "cd") == 0)
 	{
 		if (args[1] == NULL)
@@ -40,7 +42,7 @@ int inbuilt(char **args, char **env)
 	}
 	else if (_strcmp(args[0], "env") == 0)
 	{
-		for (int i = 0; env[i] != NULL; i++)
+		for (i = 0; env[i] != NULL; i++)
 		{
 			write(STDOUT_FILENO, env[i], _strlen(env[i]));
 			write(STDOUT_FILENO, "\n", 1);

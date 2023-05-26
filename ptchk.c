@@ -10,9 +10,9 @@
 char **ptchk(char **envp)
 {
 	char **path_list, *path_env_var;
-	int paths_len = 0, i, j = 0;
+	int paths_len = 0, i;
 
-	*path_list = malloc(MAX_ARGS * sizeof(char *));
+	path_list = malloc(MAX_ARGS * sizeof(char *));
 	for (i = 0; envp[i] != NULL; i++)
 	{
 		if (_strncmp(envp[i], "PATH=", 5) == 0)

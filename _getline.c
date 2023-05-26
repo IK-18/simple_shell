@@ -9,18 +9,19 @@
  * Return: number of characters
  */
 
-ssize_t _getline(char **lineptr, size_t *n, int fd)
+ssize_t _getline(char *lineptr, ssize_t *n, int fd)
 {
 	size_t bufsize = *n;
 	ssize_t pos = 0;
-	int c;
+	int c, i;
+	char *newptr;
 
 	if (!lineptr || !n)
 		return (-1);
-	if (!(*lineptr))
+	if (!(lineptr))
 	{
-		*lineptr = malloc(bufsize);
-		if (!(*lineptr))
+		lineptr = malloc(bufsize);
+		if (!(lineptr))
 			return (-1);
 	}
 	while (1)
@@ -34,19 +35,19 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 		if (pos >= bufsize - 1)
 		{
 			bufsize *= 2;
-			char *newptr = (char *)malloc(bufsize);
+			newptr = (char *)malloc(bufsize);
 			if (!newptr)
 				return (-1);
-			for (int i = 0; i < pos; i++)
-				newptr[i] = (*lineptr)[i];
-			free(*lineptr);
-			*lineptr = newptr;
+			for (i = 0; i < pos; i++)
+				newptr[i] = (lineptr)[i];
+			free(lineptr);
+			lineptr = newptr;
 			*n = bufsize;
 		}
-		(*lineptr)[pos++] = c;
+		(lineptr)[pos++] = c;
 		if (c == '\n')
 			break;
 	}
-	(*lineptr)[pos] = '\0';
+	(lineptr)[pos] = '\0';
 	return (pos);
 }

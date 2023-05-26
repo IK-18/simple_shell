@@ -13,7 +13,7 @@
 void execmd(char **av, char **env, char **path_list)
 {
 	char path[MAX_CMD_LEN];
-	int status, i;
+	int i;
 
 	if (inbuilt(av, env))
 		return;

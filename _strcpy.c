@@ -14,7 +14,7 @@ char *_strcpy(char *dest, const char *src)
 	char *orig_dest = dest;
 
 	if (dest == NULL || src == NULL)
-		return NULL;
+		return (NULL);
 	while (*src != '\0')
 		*dest++ = *src++;
 	*dest = '\0';

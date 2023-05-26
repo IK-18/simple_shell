@@ -22,7 +22,7 @@ char *_strcat(char *dest, char *src);
 char *_strdup(const char *str);
 int _putchar(char c);
 void _puts(char *str);
-ssize_t _getline(char **lineptr, size_t *n, int fd);
+ssize_t _getline(char *lineptr, size_t *n, int fd);
 void *_memchr(const void *s, int c, size_t n);
 void *_memcpy(void *dest, const void *src, size_t n);
 int inbuilt(char **args, char **env);

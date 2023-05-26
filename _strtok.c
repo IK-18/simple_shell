@@ -18,6 +18,7 @@ char *_strtok(char *str, const char *delim)
 	if (s != NULL && strlen(s))
 	{
 		const size_t dlen = strlen(delim);
+
 		while (*s && memchr(delim, *s, dlen) != NULL)
 			++s;
 		if (*s)
