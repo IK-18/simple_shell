@@ -10,9 +10,15 @@
 char **ptchk(char **envp)
 {
 	char **path_list, *path_env_var;
-	int paths_len = 0, i;
+	int paths_len, i;
 
+	paths_len = 0;
 	path_list = malloc(MAX_ARGS * sizeof(char *));
+	if (path_list == NULL)
+	{
+		perror("Error: Failed to allocate memory for path list.");
+		exit(EXIT_FAILURE);
+	}
 	for (i = 0; envp[i] != NULL; i++)
 	{
 		if (_strncmp(envp[i], "PATH=", 5) == 0)
@@ -24,7 +30,11 @@ char **ptchk(char **envp)
 				paths_len++;
 				if (paths_len >= MAX_ARGS)
 				{
-					perror("Error: Too many diretories in PATH");
+					perror("Error: Too many directories in PATH.");
+					for (int j = 0; j < paths_len; j++)
+					{
+						free(path_list[j]);
+					}
 					free(path_list);
 					exit(EXIT_FAILURE);
 				}
@@ -33,5 +43,12 @@ char **ptchk(char **envp)
 			break;
 		}
 	}
+	if (paths_len == 0)
+	{
+		perror("Error: PATH environment variable not found.");
+		free(path_list);
+		exit(EXIT_FAILURE);
+	}
+	path_list[paths_len] = NULL;
 	return (path_list);
 }

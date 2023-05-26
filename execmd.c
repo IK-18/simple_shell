@@ -10,30 +10,57 @@
  * Return: nothing
  */
 
-void execmd(char **av, char **env, char **path_list)
+void execmd(char *cmd, char **argv, char **envp, char **path_list)
 {
-	char path[MAX_CMD_LEN];
-	int i;
+	pid_t pid;
+	int status;
+	char *cmd_path = NULL;
 
-	if (inbuilt(av, env))
-		return;
-	if (access(av[0], X_OK) == 0)
+	pid = fork();
+	if (pid == -1)
 	{
-		execve(av[0], av, env);
-		perror("Error: Unable to execute command.");
-		return;
+		perror("Error: Failed to fork child process.");
+		exit(EXIT_FAILURE);
 	}
-	for (i = 0; path_list[i] != NULL; i++)
+	else if (pid == 0)
 	{
-		_strcpy(path, path_list[i]);
-		_strcat(path, "/");
-		_strcat(path, av[0]);
-		if (access(path, X_OK) == 0)
+		// Child process
+
+		// Get the full path to the command using the PATH directories
+		cmd_path = get_cmd_path(cmd, path_list);
+		if (cmd_path == NULL)
 		{
-			execve(path, av, env);
-			perror("Error: Unable to exexcute command.");
-			return;
+			perror("Error: Command not found:");
+			exit(EXIT_FAILURE);
+		}
+
+		// Execute the command
+		if (access(cmd_path, X_OK) == -1)
+		{
+			perror("Error: Command not executable");
+			free(cmd_path);
+			exit(EXIT_FAILURE);
+		}
+		if (execve(cmd_path, argv, envp) == -1)
+		{
+			perror("Error: Failed to execute command.");
+			free(cmd_path);
+			exit(EXIT_FAILURE);
+		}
+
+		free(cmd_path);
+	}
+	else
+	{
+		// Parent process
+		if (waitpid(pid, &status, 0) == -1)
+		{
+			perror("waitpid");
+			exit(EXIT_FAILURE);
+		}
+		if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
+		{
+			perror("Error: Command exited with status");
 		}
 	}
-	perror("Error: Command not found.");
 }

@@ -13,7 +13,7 @@
 #define MAX_ARGS 10
 
 void prompt();
-void execmd(char **av, char **env, char **path_list);
+void execmd(char *cmd, char **argv, char **envp, char **path_list);
 char *_strtok(char *str, const char *delim);
 int _strcmp(char *s1, char *s2);
 char **parse_cmd(char *str);
@@ -30,5 +30,6 @@ int _atoi(char *s);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strcpy(char *dest, const char *src);
 size_t _strlen(const char *s);
+char *get_cmd_path(char *cmd, char **path_list);
 
 #endif /*SHELL_H*/

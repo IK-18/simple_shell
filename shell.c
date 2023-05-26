@@ -21,9 +21,6 @@ int main(int argc, char **argv, char **env)
 	{
 		prompt();
 		nread = read(STDIN_FILENO, lineptr, MAX_CMD_LEN);
-		char_len = _strlen(lineptr);
-		if (lineptr[char_len - 1] == '\n')
-			lineptr[char_len - 1] = '\0';
 		if (nread == -1)
 			exit(EXIT_FAILURE);
 		else if (nread == 0)
@@ -31,12 +28,22 @@ int main(int argc, char **argv, char **env)
 			write(STDOUT_FILENO, "\n", 1);
 			exit(EXIT_SUCCESS);
 		}
+		char_len = _strlen(lineptr);
+		if (lineptr[char_len - 1] == '\n')
+			lineptr[char_len - 1] = '\0';
 		av = parse_cmd(lineptr);
 		if (av == NULL)
 			continue;
 		path_list = ptchk(env);
-		execmd(av, env, path_list);
+		if (path_list == NULL)
+		{
+			perror("Error: Failed to get path list.");
+			free(av);
+			continue;
+		}
+		execmd(av[0], av, envp, path_list);
+		free(av);
+		free(path_list);
 	}
-	free(path_list);
-	return (0);
+	return 0;
 }

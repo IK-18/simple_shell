@@ -10,45 +10,44 @@
 
 int inbuilt(char **args, char **env)
 {
-	int i;
+	char cwd[MAX_CMD_LEN];
 
 	if (_strcmp(args[0], "cd") == 0)
 	{
 		if (args[1] == NULL)
-			perror("Error: Missing directory argument for 'cd' command.");
-		else
 		{
-			if (chdir(args[1]) != 0)
-				perror("Error: Failed to change directory.");
+			perror("Error: Missing directory argument for 'cd' command.");
 		}
-		return (1);
+		else if (chdir(args[1]) != 0)
+			perror("Error: Failed to change directory.");
+		return 1;
 	}
 	else if (_strcmp(args[0], "pwd") == 0)
 	{
-		char cwd[MAX_CMD_LEN];
-
-		if (getcwd(cwd, sizeof(cwd)) != NULL)
+		if (getcwd(cwd, sizeof(cwd)) == NULL)
 		{
-			write(STDOUT_FILENO, cwd, _strlen(cwd));
-			write(STDOUT_FILENO, "\n", 1);
+			perror("Error: Failed to get current working directory.");
 		}
 		else
-			perror("Error: Failed to get current working directory.");
-		return (1);
+		{
+			_puts(cwd);
+			_putchar('\n');
+		}
+		return 1;
 	}
 	else if (_strcmp(args[0], "exit") == 0)
 	{
-		write(STDOUT_FILENO, "Exiting the shell...\n", 21);
-		exit(0);
+		_puts("Exiting the shell...\n");
+		exit(EXIT_SUCCESS);
 	}
 	else if (_strcmp(args[0], "env") == 0)
 	{
-		for (i = 0; env[i] != NULL; i++)
+		for (int i = 0; env[i] != NULL; i++)
 		{
-			write(STDOUT_FILENO, env[i], _strlen(env[i]));
-			write(STDOUT_FILENO, "\n", 1);
+			_puts(env[i]);
+			_putchar('\n');
 		}
-		return (1);
+		return 1;
 	}
-	return (0);
+	return 0;
 }

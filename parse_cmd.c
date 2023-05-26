@@ -9,22 +9,68 @@
 
 char **parse_cmd(char *str)
 {
-	char **s, *token;
-	int i = 0, j = 0;
+	char **s, *token, *buf;
+	int i, j, buf_size = MAX_BUF_SIZE;
 
-	s = malloc(8 * sizeof(char *));
+	i = 0;
+	j = 0;
+	s = malloc((MAX_ARGS + 1) * sizeof(char *));
 	if (s == NULL)
 	{
-		perror("Can't allocate space");
-		return (NULL);
+		perror("Error: Failed to allocate memory for command arguments.");
+		return NULL;
 	}
-	token = _strtok(str, " ");
+	buf = malloc(buf_size * sizeof(char));
+	if (buf == NULL)
+	{
+		perror("Error: Failed to allocate memory for command buffer.");
+		free(s);
+		return NULL;
+	}
+	token = _strtok(buf, " ");
 	while (token != NULL)
 	{
 		if (i >= MAX_ARGS)
 		{
-			perror("Error: too many arguments");
-			return (NULL);
+			perror("Error: Too many arguments.");
+			free(s);
+			free(buf);
+			return NULL;
+		}
+		if (j >= buf_size)
+		{
+			char *new_buf = realloc(buf, buf_size * 2);
+			if (new_buf == NULL)
+			{
+				perror("Error: Failed to allocate memory for command buffer.");
+				free(s);
+				free(buf);
+				return NULL;
+			}
+			buf = new_buf;
+			buf_size *= 2;
+		}
+		if (token[j] == '\"' || token[j] == '\'')
+		{
+			char quote = token[j];
+			j++;
+			while (token[j])
+			{
+				if (token[j] == quote)
+				{
+					token[j] = '\0';
+					break;
+				}
+				j++;
+			}
+		}
+		else if (token[j] == '\\')
+		{
+			j++;
+			if (token[j] == '\"' || token[j] == '\'' || token[j] == '\\')
+			{
+				memmove(&token[j - 1], &token[j], _strlen(token + j) + 1);
+			}
 		}
 		while (token[j])
 		{
@@ -35,14 +81,16 @@ char **parse_cmd(char *str)
 		s[i] = _strdup(token);
 		if (s[i] == NULL)
 		{
-			perror("Can't allocate space");
-			return (NULL);
+			perror("Error: Failed to allocate memory for command argument.");
+			free(s);
+			free(buf);
+			return NULL;
 		}
 		i++;
-		s = realloc(s, sizeof(char *) * (i + 1));
 		j = 0;
 		token = _strtok(NULL, " ");
 	}
 	s[i] = NULL;
-	return (s);
+	free(buf);
+	return s;
 }
