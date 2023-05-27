@@ -42,6 +42,6 @@ void execmd(char *cmd, char **av, char **env, char **path_list)
 		if (waitpid(pid, &status, 0) == -1)
 			exit(EXIT_FAILURE);
 		if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
-			write(STDOUT_FILENO, "\n", 1);
+			perror("Error: Command exited with status");
 	}
 }

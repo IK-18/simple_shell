@@ -32,7 +32,7 @@ int main(int argc, char **argv, char **env)
 		if (lineptr[char_len - 1] == '\n')
 			lineptr[char_len - 1] = '\0';
 		av = parse_cmd(lineptr);
-		if (av == NULL)
+		if (av == NULL || av[0] == '\n')
 			continue;
 		path_list = ptchk(env);
 		if (path_list == NULL)
@@ -42,7 +42,11 @@ int main(int argc, char **argv, char **env)
 			continue;
 		}
 		if (inbuilt(av, env) == 1)
+		{
+			free(av);
+			free(path_list);
 			continue;
+		}
 		execmd(av[0], av, env, path_list);
 		free(av);
 		free(path_list);
