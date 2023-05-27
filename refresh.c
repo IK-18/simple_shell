@@ -12,7 +12,7 @@ void refresh(char **path_list)
 	char **empty_list;
 
 	empty_list = malloc(MAX_ARGS * sizeof(char *));
-	free(empty_list);
 	path_list = empty_list;
+	free(empty_list);
 	return;
 }
