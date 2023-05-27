@@ -34,13 +34,22 @@ int main(int argc, char **argv, char **env)
 		av = parse_cmd(lineptr);
 		if (av == NULL || _strcmp(av[0], "\n") == 0)
 			continue;
+		path_list = ptchk(env);
+		if (path_list == NULL)
+		{
+			perror("Error: Failed to get path list.");
+			free(av);
+			continue;
+		}
 		if (inbuilt(av, env) == 1)
 		{
 			free(av);
+			free(path_list);
 			continue;
 		}
 		execmd(av[0], av, env, path_list);
 		free(av);
+		free(path_list);
 	}
 	return (0);
 }
