@@ -13,7 +13,7 @@ char **ptchk(char **envp)
 	int paths_len, i;
 
 	paths_len = 0;
-	path_list = realloc(path_list, MAX_ARGS * sizeof(char *));
+	path_list = malloc(MAX_ARGS * sizeof(char *));
 	if (path_list == NULL)
 	{
 		perror("Error: Failed to allocate memory for path list.");
