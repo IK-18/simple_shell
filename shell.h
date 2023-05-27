@@ -13,7 +13,7 @@
 #define MAX_ARGS 10
 
 void prompt();
-void refresh(char **path_list);
+char **refresh();
 void execmd(char *cmd, char **argv, char **envp, char **path_list);
 char *_strtok(char *str, const char *delim);
 int _strcmp(char *s1, char *s2);
