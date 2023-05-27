@@ -41,7 +41,8 @@ int main(int argc, char **argv, char **env)
 			free(av);
 			continue;
 		}
-		execmd(av[0], av, env, path_list);
+		if (inbuilt(av, env) == 0)
+			execmd(av[0], av, env, path_list);
 		free(av);
 		free(path_list);
 	}
