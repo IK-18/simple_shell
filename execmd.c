@@ -23,6 +23,11 @@ void execmd(char *cmd, char **av, char **env, char **path_list)
 	else if (pid == 0)
 	{
 		path_list = ptchk(env);
+		if (path_list == NULL)
+		{
+			perror("Error: Failed to get path list.");
+			exit(EXIT_FAILURE);
+		}
 		cmd_path = get_cmd_path(cmd, path_list);
 		if (cmd_path == NULL)
 			exit(EXIT_FAILURE);

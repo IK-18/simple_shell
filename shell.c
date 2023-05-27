@@ -37,12 +37,10 @@ int main(int argc, char **argv, char **env)
 		if (inbuilt(av, env) == 1)
 		{
 			free(av);
-			free(path_list);
 			continue;
 		}
 		execmd(av[0], av, env, path_list);
 		free(av);
-		free(path_list);
 	}
 	return (0);
 }
