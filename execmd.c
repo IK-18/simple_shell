@@ -22,6 +22,7 @@ void execmd(char *cmd, char **av, char **env, char **path_list)
 		exit(EXIT_FAILURE);
 	else if (pid == 0)
 	{
+		path_list = ptchk(env);
 		cmd_path = get_cmd_path(cmd, path_list);
 		if (cmd_path == NULL)
 			exit(EXIT_FAILURE);
