@@ -16,9 +16,7 @@ int inbuilt(char **args, char **env)
 	if (_strcmp(args[0], "cd") == 0)
 	{
 		if (args[1] == NULL)
-		{
 			perror("Error: Missing directory argument for 'cd' command.");
-		}
 		else if (chdir(args[1]) != 0)
 			perror("Error: Failed to change directory.");
 		return (1);
@@ -26,9 +24,7 @@ int inbuilt(char **args, char **env)
 	else if (_strcmp(args[0], "pwd") == 0)
 	{
 		if (getcwd(cwd, sizeof(cwd)) == NULL)
-		{
 			perror("Error: Failed to get current working directory.");
-		}
 		else
 		{
 			_puts(cwd);

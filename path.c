@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/**
+ * get_cmd_path - gets the path of teh command
+ * @cmd: teh command
+ * @path_list: the list of paths
+ *
+ * Return: path to command
+ */
+
 char *get_cmd_path(char *cmd, char **path_list)
 {
 	char *cmd_path = malloc(MAX_CMD_LEN);

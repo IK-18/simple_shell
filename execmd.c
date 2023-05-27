@@ -21,27 +21,19 @@ void execmd(char *cmd, char **av, char **env, char **path_list)
 		return;
 	pid = fork();
 	if (pid == -1)
-	{
-		perror("Error: Failed to fork child process.");
 		exit(EXIT_FAILURE);
-	}
 	else if (pid == 0)
 	{
 		cmd_path = get_cmd_path(cmd, path_list);
 		if (cmd_path == NULL)
-		{
-			perror("Error: Command not found:");
 			exit(EXIT_FAILURE);
-		}
 		if (access(cmd_path, X_OK) == -1)
 		{
-			perror("Error: Command not executable");
 			free(cmd_path);
 			exit(EXIT_FAILURE);
 		}
 		if (execve(cmd_path, av, env) == -1)
 		{
-			perror("Error: Failed to execute command.");
 			free(cmd_path);
 			exit(EXIT_FAILURE);
 		}
@@ -50,10 +42,7 @@ void execmd(char *cmd, char **av, char **env, char **path_list)
 	else
 	{
 		if (waitpid(pid, &status, 0) == -1)
-		{
-			perror("waitpid");
 			exit(EXIT_FAILURE);
-		}
 		if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
 			perror("Error: Command exited with status");
 	}
