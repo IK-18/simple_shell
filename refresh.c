@@ -7,12 +7,10 @@
  * Return: empty path list
  */
 
-void refresh(char **path_list)
+char **refresh()
 {
 	char **empty_list;
 
 	empty_list = malloc(MAX_ARGS * sizeof(char *));
-	path_list = empty_list;
-	free(empty_list);
-	return;
+	return (empty_list);
 }
