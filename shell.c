@@ -34,6 +34,7 @@ int main(int argc, char **argv, char **env)
 		av = parse_cmd(lineptr);
 		if (av == NULL || _strcmp(av[0], "\n") == 0)
 			continue;
+		refresh(path_list);
 		path_list = ptchk(env);
 		if (path_list == NULL)
 		{
