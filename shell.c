@@ -32,7 +32,7 @@ int main(int argc, char **argv, char **env)
 		if (lineptr[char_len - 1] == '\n')
 			lineptr[char_len - 1] = '\0';
 		av = parse_cmd(lineptr);
-		if (av == NULL || av[0] == '\n')
+		if (av == NULL || _strcmp(av[0], "\n") == 0)
 			continue;
 		path_list = ptchk(env);
 		if (path_list == NULL)
