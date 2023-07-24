@@ -6,12 +6,13 @@
  *
  * Return: new string
  */
-
 char *_strdup(const char *str)
 {
 	char *newstr = NULL;
 	int len, i;
 
+	if (str == NULL)
+		return (NULL);
 	len = 0;
 	while (*(str + len) != '\0')
 		len++;

@@ -8,7 +8,6 @@
  *
  * Return: pointer to matching character
  */
-
 void *_memcpy(void *dest, const void *src, size_t n)
 {
 	char *d = dest;

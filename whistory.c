@@ -1,0 +1,32 @@
+#include "shell.h"
+
+/**
+ * whistory - writes to history file
+ * @pseudo: pseudo struct
+ *
+ * Return: 1 on success, -1 otherwise
+ */
+int whistory(pseudo_t *pseudo)
+{
+	ssize_t fd;
+	char *fname = _gethistory(pseudo);
+	list_t *node = NULL;
+	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+
+	if (!fname)
+		return (-1);
+	fd = open(fname, O_CREAT | O_TRUNC | O_RDWR, mode);
+	free(fname);
+	if (fd < 0)
+		return (-1);
+	node = pseudo->history;
+	while (node)
+	{
+		fdputs(node->str, fd);
+		fdputchar('\n', fd);
+		node = node->next;
+	}
+	fdputchar(FLUSH, fd);
+	close(fd);
+	return (EXIT_FAILURE);
+}

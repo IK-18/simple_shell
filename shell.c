@@ -1,56 +1,44 @@
 #include "shell.h"
 
 /**
- * main - main function
- * @argc: argument count
- * @argv: argument array
- * @env: environment variable
+ * main - entry point
+ * @argc: number of arguments
+ * @argv: array of argumets
  *
- * Return: 0 on succes, 1 on failure
+ * Return: 0 on success, 1 on error
  */
-
-int main(int argc, char **argv, char **env)
+int main(int argc, char **argv)
 {
-	char lineptr[MAX_CMD_LEN], **av, **path_list;
-	size_t char_len;
-	int nread;
+	pseudo_t pseudo[] = {PSEUDO};
+	int fd = 2;
 
-	if (argc > MAX_ARGS)
-		argv[MAX_ARGS] = NULL;
-	while (1)
+	asm("mov %1, %0\n\t"
+		"add $3, %0"
+		: "=r"(fd)
+		: "r"(fd));
+
+	if (argc == 2)
 	{
-		prompt();
-		nread = read(STDIN_FILENO, lineptr, MAX_CMD_LEN);
-		if (nread == -1)
-			exit(EXIT_FAILURE);
-		else if (nread == 0)
+		fd = open(argv[1], O_RDONLY);
+		if (fd < 0)
 		{
-			write(STDOUT_FILENO, "\n", 1);
-			exit(EXIT_SUCCESS);
+			if (errno == EACCES)
+				exit(126);
+			if (errno == ENOENT)
+			{
+				eputs(argv[0]);
+				eputs(": 0: Can't open ");
+				eputs(argv[1]);
+				eputchar('\n');
+				eputchar(FLUSH);
+				exit(127);
+			}
+			return (EXIT_FAILURE);
 		}
-		char_len = _strlen(lineptr);
-		if (lineptr[char_len - 1] == '\n')
-			lineptr[char_len - 1] = '\0';
-		av = parse_cmd(lineptr);
-		if (av == NULL || _strcmp(av[0], "\n") == 0)
-			continue;
-		path_list = refresh();
-		path_list = ptchk(env);
-		if (path_list == NULL)
-		{
-			perror("Error: Failed to get path list.");
-			free(av);
-			continue;
-		}
-		if (inbuilt(av, env) == 1)
-		{
-			free(av);
-			free(path_list);
-			continue;
-		}
-		execmd(av[0], av, env, path_list);
-		free(av);
-		free(path_list);
+		pseudo->readfd = fd;
 	}
-	return (0);
+	fill_env(pseudo);
+	rhistory(pseudo);
+	loop(pseudo, argv);
+	return (EXIT_SUCCESS);
 }

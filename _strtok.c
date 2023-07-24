@@ -1,41 +1,53 @@
 #include "shell.h"
 
 /**
- * _strtok - splits a string into tikens separated by a delimiter
+ * _strtok - splits a string into tokens separated by a delimiter
+ * ignoring repeated delimiters
  * @str: string to be split
  * @delim: delimiter
  *
- * Return: token
+ * Return: pointer to array of strings or NULL
  */
-
-char *_strtok(char *str, const char *delim)
+char **_strtok(char *str, const char *delim)
 {
-	static char *s;
-	char *token = NULL;
+	char **arr;
+	int a, b, c, d, len = 0;
 
-	if (str != NULL)
-		s = str;
-	if (s != NULL && strlen(s))
+	if (str == NULL || str[0] == '\0')
+		return (NULL);
+	if (delim == NULL)
+		delim = " ";
+	for (a = 0; str[a] != '\0'; a++)
 	{
-		const size_t dlen = strlen(delim);
-
-		while (*s && memchr(delim, *s, dlen) != NULL)
-			++s;
-		if (*s)
-		{
-			token = s;
-			while (*s)
-			{
-				if (memchr(delim, *s, dlen) != NULL)
-					break;
-				++s;
-			}
-			if (*s)
-			{
-				s[0] = 0;
-				++s;
-			}
-		}
+		if (!_chrcmp(str[a], delim) && (_chrcmp(str[a + 1], delim) || str[a + 1] == NULL))
+			len++;
 	}
-	return (token);
+	if (len == 0)
+		return (NULL);
+	arr = malloc((len + 1) * sizeof(char *));
+	if (!arr)
+		return (NULL);
+	for (a = 0, b = 0; b < len; b++)
+	{
+		for (; _chrcmp(str[a], delim); a++)
+			;
+		for (c = 0; !_chrcmp(str[a + c], delim) && str[a + c]; c++)
+			;
+		arr[b] = malloc((c + 1) * sizeof(char));
+		if (!arr[b])
+		{
+			while (c < b)
+			{
+				free(arr[c]);
+				c++;
+			}
+			free(arr);
+			return (NULL);
+		}
+		for (d = 0; d < c; d++)
+			arr[b][d] = str[a++];
+		arr[b][d] = 0;
+	}
+	arr[b] = NULL;
+	return (arr);
 }

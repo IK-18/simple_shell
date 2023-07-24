@@ -6,15 +6,15 @@
  * to the buffer pointed to by dest
  * @dest: destination file
  * @src: source file
+ *
  * Return: the pointer to dest
  */
-
 char *_strcpy(char *dest, const char *src)
 {
 	char *orig_dest = dest;
 
-	if (dest == NULL || src == NULL)
-		return (NULL);
+	if (dest == src || src == NULL)
+		return (dest);
 	while (*src != '\0')
 		*dest++ = *src++;
 	*dest = '\0';

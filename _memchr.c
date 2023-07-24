@@ -8,7 +8,6 @@
  *
  * Return: pointer to matching character
  */
-
 void *_memchr(const void *s, int c, size_t n)
 {
 	const unsigned char *p = s;

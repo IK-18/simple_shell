@@ -1,0 +1,44 @@
+#include "shell.h"
+
+/**
+ * loop - main shell loop
+ * @pseudo: the parameter & return pseudo struct
+ * @argv: argument array
+ *
+ * Return: 0 on success, 1 otherwise, or error code
+ */
+int loop(pseudo_t *pseudo, char *argv[])
+{
+	ssize_t i;
+	int inbuilt_ret;
+
+	for (i = 0, inbuilt_ret = 0; i != -1 && inbuilt_ret != -2;)
+	{
+		clear_info(pseudo);
+		if (interact(pseudo))
+			_puts("$ ");
+		eputchar(FLUSH);
+		i = _get(pseudo);
+		if (i != -1)
+		{
+			_setinfo(pseudo, argv);
+			inbuilt_ret = execinbuilt(pseudo);
+			if (inbuilt_ret == -1)
+				chkcmd(pseudo);
+		}
+		else if (interact(pseudo))
+			_putchar('\n');
+		free_info(pseudo, 0);
+	}
+	whistory(pseudo);
+	free_info(pseudo, 1);
+	if (!interact(pseudo) && pseudo->status)
+		exit(pseudo->status);
+	if (inbuilt_ret == -2)
+	{
+		if (pseudo->err_num == -1)
+			exit(pseudo->status);
+		exit(pseudo->err_num);
+	}
+	return (inbuilt_ret);
+}
