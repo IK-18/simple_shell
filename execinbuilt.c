@@ -23,9 +23,14 @@ int execinbuilt(pseudo_t *pseudo)
 		{"alias", "define or display aliases", _alias},
 		{NULL, NULL, NULL}};
 
-	i = chkinbuilt(pseudo);
-	if (i < 0)
-		return (inbuilt_ret);
-	inbuilt_ret = inbuiltcmds[i].function(pseudo);
+	for (i = 0; inbuiltcmds[i].flag; i++)
+	{
+		if (!_strcmp(pseudo->argv[0], inbuiltcmds[i].flag))
+		{
+			pseudo->linecount++;
+			inbuilt_ret = inbuiltcmds[i].function(pseudo);
+			break;
+		}
+	}
 	return (inbuilt_ret);
 }
