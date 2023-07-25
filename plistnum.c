@@ -14,7 +14,7 @@ size_t plistnum(list_t *list)
 	node = list;
 	while (node != NULL)
 	{
-		_puts(_itoa(node->num, 10, 0));
+		_puts(__itoa(node->num, 10, 0));
 		_putchar('\n');
 		node = node->next;
 		n++;

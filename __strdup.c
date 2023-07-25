@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _strdup - duplicates a string
+ * __strdup - duplicates a string
  * @str: string to be duplicated
  *
  * Return: new string
  */
-char *_strdup(const char *str)
+char *__strdup(const char *str)
 {
 	char *newstr = NULL;
 	int len, i;

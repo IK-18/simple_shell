@@ -20,7 +20,7 @@ void _setpseudo(pseudo_t *pseudo, char *argv[])
 			pseudo->argv = malloc(sizeof(char *) * 2);
 			if (pseudo->argv)
 			{
-				pseudo->argv[0] = _strdup(pseudo->args);
+				pseudo->argv[0] = __strdup(pseudo->args);
 				pseudo->argv[1] = NULL;
 			}
 		}

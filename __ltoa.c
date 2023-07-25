@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * ltoa - converts a list to an array of strings
+ * __ltoa - converts a list to an array of strings
  * @list: pointer to first node of list
  *
  * Return: array of strings or NULL
  */
-char **ltoa(list_t *list)
+char **__ltoa(list_t *list)
 {
 	list_t *node = list;
 	size_t i = list_len(list), j;

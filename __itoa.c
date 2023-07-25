@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- * _itoa - converts an integer into a string
+ * __itoa - converts an integer into a string
  * @num: number
  * @base: base
  * @is_unsigned: bool to show if value is unsigned
  *
  * Return: converted string
  */
-char *_itoa(long int num, int base, int is_unsigned)
+char *__itoa(long int num, int base, int is_unsigned)
 {
 	static char *arr;
 	static char buf[50];

@@ -21,7 +21,7 @@ int reset_alias(pseudo_t *pseudo)
 		c = _strchr(node->str, '=');
 		if (c == NULL)
 			return (FAILURE);
-		c = _strdup(c + 1);
+		c = __strdup(c + 1);
 		if (c == NULL)
 			return (FAILURE);
 		pseudo->argv[0] = c;
