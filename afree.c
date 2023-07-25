@@ -8,11 +8,11 @@
  */
 void afree(char **arr)
 {
-	char **tmp;
+	char **tmp = arr;
 
-	if (tmp == NULL)
+	if (arr == NULL)
 		return;
-	for (tmp = arr; *tmp; tmp++)
-		free(*tmp);
-	free(arr);
+	for (; *arr; arr++)
+		free(*arr);
+	free(tmp);
 }
