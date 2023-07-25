@@ -9,10 +9,10 @@
  */
 char *_getenv(pseudo_t *pseudo, const char *var)
 {
-	list_t *node = pseudo->env;
+	list_t *node;
 	char *str;
 
-	for (node; node; node = node->next)
+	for (node = pseudo->env; node; node = node->next)
 	{
 		str = prefix(node->str, var);
 		if (str && *str)

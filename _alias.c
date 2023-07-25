@@ -10,12 +10,11 @@ int _alias(pseudo_t *pseudo)
 {
 	int i = 1;
 	char *c = NULL;
-	list_t *node = NULL;
+	list_t *node;
 
 	if (pseudo->argc == 1)
 	{
-		node = pseudo->alias;
-		for (node; node; node = node->next)
+		for (node = pseudo->alias; node; node = node->next)
 			palias(node);
 		return (EXIT_SUCCESS);
 	}

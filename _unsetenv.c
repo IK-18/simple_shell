@@ -9,13 +9,13 @@
  */
 int _unsetenv(pseudo_t *pseudo, char *prop)
 {
-	list_t *node = pseudo->env;
+	list_t *node;
 	size_t i;
 	char *c;
 
-	if (node == NULL || prop == NULL)
+	if (pseudo->env == NULL || prop == NULL)
 		return (FAILURE);
-	for (i = 0, node; node; node = node->next, i++)
+	for (i = 0, node = pseudo->env; node; node = node->next, i++)
 	{
 		c = prefix(node->str, prop);
 		if (c != NULL && *c == '=')

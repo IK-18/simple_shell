@@ -19,7 +19,7 @@ char **_strtok(char *str, char *delim)
 		delim = " ";
 	for (a = 0; str[a] != '\0'; a++)
 	{
-		if (!_chrcmp(str[a], delim) && (_chrcmp(str[a + 1], delim) || str[a + 1] == NULL))
+		if (!_chrcmp(str[a], delim) && (_chrcmp(str[a + 1], delim) || !str[a + 1]))
 			len++;
 	}
 	if (len == 0)

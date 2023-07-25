@@ -9,7 +9,7 @@
  */
 char *prefix(const char *str, const char *c)
 {
-	for (*c; *c; *c++)
+	for (; *c; c++)
 	{
 		if (*c != *str++)
 			return (NULL);

@@ -13,7 +13,7 @@ int fdputs(char *str, int fd)
 
 	if (!str)
 		return (EXIT_SUCCESS);
-	for (*str; *str; *str++)
+	for (; *str; str++)
 		i += fdputchar(*str, fd);
 	return (i);
 }

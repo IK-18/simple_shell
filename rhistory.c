@@ -40,8 +40,7 @@ int rhistory(pseudo_t *pseudo)
 		}
 	add_history(pseudo, buffer + last, count++);
 	free(buffer);
-	pseudo->histcount = count;
-	for (pseudo->histcount; pseudo->histcount >= MAX_HISTORY; pseudo->histcount--)
+	for (pseudo->histcount = count; pseudo->histcount >= MAX_HISTORY; pseudo->histcount--)
 		delete_node_at_index(&(pseudo->history), 0);
 	reorder_history(pseudo);
 	return (pseudo->histcount);

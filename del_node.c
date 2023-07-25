@@ -10,7 +10,7 @@
 int delete_node_at_index(list_t **list, unsigned int index)
 {
 	list_t *temp, *prev;
-	unsigned int i = 0;
+	unsigned int i;
 
 	if (*list == NULL || list == NULL)
 		return (FAILURE);
@@ -22,8 +22,7 @@ int delete_node_at_index(list_t **list, unsigned int index)
 		free(temp);
 		return (SUCCESS);
 	}
-	temp = *list;
-	for (i, temp; temp; temp = temp->next, i++)
+	for (i = 0, temp = *list; temp; temp = temp->next, i++)
 	{
 		if (i == index)
 		{

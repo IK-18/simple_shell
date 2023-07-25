@@ -16,15 +16,14 @@ char *_itoa(long int num, int base, int is_unsigned)
 	unsigned long int new;
 
 	arr = "0123456789ABCDEF";
-	new = num;
 	if (is_unsigned == 0 && num < 0)
 	{
-		new = -num;
+		num = -num;
 		sign = '-';
 	}
 	ptr = &buf[49];
 	*ptr = '\0';
-	for (new; new != 0; new /= base)
+	for (new = num; new != 0; new /= base)
 		*--ptr = arr[new % base];
 	if (sign)
 		*--ptr = sign;

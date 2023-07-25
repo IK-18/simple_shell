@@ -17,7 +17,7 @@ void chkcmd(pseudo_t *pseudo)
 		pseudo->linecount++;
 		pseudo->linecount_flag = 0;
 	}
-	while (pseudo->args[i] != NULL)
+	while (pseudo->args[i])
 	{
 		if (!_chrcmp(pseudo->args[i], " \t\n"))
 			j++;

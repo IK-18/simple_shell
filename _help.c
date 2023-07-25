@@ -29,9 +29,9 @@ int _help(pseudo_t *pseudo)
 			if (_strcmp(pseudo->argv[1], inbuiltcmds[i].flag) == 0)
 			{
 				_puts(inbuiltcmds[i].flag);
-				for (tab; tab > 0; tab--)
+				for (; tab > 0; tab--)
 					_putchar('\t');
-				for (ws; ws > 0; ws--)
+				for (; ws > 0; ws--)
 					_putchar(' ');
 				_puts(inbuiltcmds[i].desc);
 				return (EXIT_SUCCESS);
@@ -42,10 +42,10 @@ int _help(pseudo_t *pseudo)
 		else
 		{
 			_puts(inbuiltcmds[i].flag);
-			for (tab; tab > 0; tab--)
+			for (; tab > 0; tab--)
 				_putchar('\t');
-			for (ws; ws > 0; ws--)
-				_putchar(" ");
+			for (; ws > 0; ws--)
+				_putchar(' ');
 			_puts(inbuiltcmds[i].desc);
 		}
 	}

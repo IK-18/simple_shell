@@ -9,10 +9,10 @@
  */
 int _chrcmp(char c, char *str)
 {
-	for (*str; *str != '\0'; *str++)
+	for (; *str != '\0'; str++)
 	{
 		if (*str == c)
-			return (EXIT_FAILURE);
+			return (SUCCESS);
 	}
-	return (EXIT_SUCCESS);
+	return (FAILURE);
 }

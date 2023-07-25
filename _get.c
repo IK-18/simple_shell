@@ -22,7 +22,7 @@ ssize_t _get(pseudo_t *pseudo)
 		new_pos = pos;
 		ptr = buffer + pos;
 		chkmulticmd(pseudo, buffer, &new_pos, pos, len);
-		for (new_pos; new_pos < len; new_pos++)
+		for (; new_pos < len; new_pos++)
 		{
 			if (_ismulticmd(pseudo, buffer, &new_pos))
 				break;
