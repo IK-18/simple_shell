@@ -29,7 +29,7 @@ ssize_t bufcmd(pseudo_t *pseudo, char **buffer, size_t *len)
 			pseudo->linecount_flag = 1;
 			comments(*buffer);
 			add_history(pseudo, *buffer, pseudo->histcount++);
-			if (_strchr(*buffer, ';'))
+			/* if (_strchr(*buffer, ';')) */
 			{
 				*len = bytes_read;
 				pseudo->cmd_buffer = buffer;
