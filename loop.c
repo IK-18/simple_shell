@@ -29,7 +29,7 @@ int loop(pseudo_t *pseudo, char *argv[])
 				chkcmd(pseudo);
 		}
 		else if (interact(pseudo))
-			_puts("\n$ ");
+			_putchar('\n');
 		free_pseudo(pseudo, 0);
 	}
 	whistory(pseudo);
