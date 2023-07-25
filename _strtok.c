@@ -8,7 +8,7 @@
  *
  * Return: pointer to array of strings or NULL
  */
-char **_strtok(char *str, const char *delim)
+char **_strtok(char *str, char *delim)
 {
 	char **arr;
 	int a, b, c, d, len = 0;

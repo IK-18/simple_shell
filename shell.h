@@ -98,7 +98,7 @@ typedef struct pseudo
 typedef struct inbuilt
 {
 	char *flag;
-	char **desc;
+	char *desc;
 	int (*function)(pseudo_t *);
 } inbuilt_cmd;
 
@@ -109,11 +109,11 @@ int _atoi(char *s);
 int _cd(pseudo_t *pseudo);
 int _chrcmp(char c, char *delim);
 char *_chrdup(char *pth, int start, int stop);
-int _exit(pseudo_t *pseudo);
+int __exit(pseudo_t *pseudo);
 int _free(void **ptr);
 ssize_t _get(pseudo_t *pseudo);
 char *_getenv(pseudo_t *pseudo, const char *var);
-char **get_environ(pseudo_t *pseudo);
+char **_getenviron(pseudo_t *pseudo);
 char *_gethistory(pseudo_t *pseudo);
 ssize_t _getline(pseudo_t *pseudo, char **lineptr, size_t *n);
 int _help(pseudo_t *pseudo);
@@ -137,9 +137,10 @@ int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, const char *src);
 char *_strdup(const char *str);
 int _strlen(const char *s);
+char *_strncat(char *dest, char *src, int n);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strncpy(char *dest, char *src, int n);
-char **_strtok(char *str, const char *delim);
+char **_strtok(char *str, char *delim);
 int _unsetalias(pseudo_t *pseudo, char *str);
 int _unsetenv(pseudo_t *pseudo, char *prop);
 int add_history(pseudo_t *pseudo, char *buffer, int count);
@@ -174,15 +175,16 @@ char **ltoa(list_t *list);
 list_t *node_prefix(list_t *list, char *str, char c);
 int palias(list_t *node);
 int penv(pseudo_t *pseudo);
-size_t plist(const list_t *list);
-size_t plistnum(const list_t *list);
-size_t pliststr(const list_t *list);
+size_t plist(list_t *list);
+size_t plistnum(list_t *list);
+size_t pliststr(list_t *list);
 char *prefix(const char *str, const char *c);
 ssize_t rbuf(pseudo_t *pseudo, char *buffer, size_t *size);
 int reorder_history(pseudo_t *pseudo);
 int reset_alias(pseudo_t *pseudo);
 int reset_string(char **old_string, char *new_string);
 int reset_vars(pseudo_t *pseudo);
+int rhistory(pseudo_t *pseudo);
 void sigBlocker(__attribute__((unused)) int signum);
 int whistory(pseudo_t *pseudo);
 

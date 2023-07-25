@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _exit - exits the shell
+ * __exit - exits the shell
  * @pseudo: pseudo struct
  *
  * Return: an exit status
  */
-int _exit(pseudo_t *pseudo)
+int __exit(pseudo_t *pseudo)
 {
 	int chk = -1;
 

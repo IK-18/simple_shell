@@ -10,7 +10,7 @@ int _help(pseudo_t *pseudo)
 {
 	int i, tab, ws;
 	inbuilt_cmd inbuiltcmds[] = {
-		{"exit", "cause the shell to exit", _exit},
+		{"exit", "cause the shell to exit", __exit},
 		{"env", "prints the current environment", penv},
 		{"help", "display information about inbuilt commands", _help},
 		{"history", "display the command history list with line numbers", _history},
@@ -18,12 +18,12 @@ int _help(pseudo_t *pseudo)
 		{"unsetenv", "remove an environment variable", __unsetenv},
 		{"cd", "change the working directory", _cd},
 		{"alias", "define or display aliases", _alias},
-		{NULL, NULL}};
+		{NULL, NULL, NULL}};
 
 	for (i = 0; inbuiltcmds[i].flag; i++)
 	{
 		tab = (16 - _strlen(inbuiltcmds[i].flag)) / 4;
-		ws = _strlen(inbuiltcmds[i].flag) % 4;
+		ws = (16 - _strlen(inbuiltcmds[i].flag)) % 4;
 		if (pseudo->argv[1] != NULL)
 		{
 			if (_strcmp(pseudo->argv[1], inbuiltcmds[i].flag) == 0)
@@ -32,12 +32,12 @@ int _help(pseudo_t *pseudo)
 				for (tab; tab > 0; tab--)
 					_putchar('\t');
 				for (ws; ws > 0; ws--)
-					_putchar(" ");
+					_putchar(' ');
 				_puts(inbuiltcmds[i].desc);
 				return (EXIT_SUCCESS);
 			}
 			_perror(pseudo, "Not an inbuilt command:\t");
-			eputs(pseudo->argv[1]), eputchar("\n");
+			eputs(pseudo->argv[1]), eputchar('\n');
 		}
 		else
 		{

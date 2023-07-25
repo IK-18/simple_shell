@@ -6,7 +6,7 @@
  *
  * Return: number of nodes printed
  */
-size_t plistnum(const list_t *list)
+size_t plistnum(list_t *list)
 {
 	size_t n = 0;
 	list_t *node;
@@ -15,7 +15,7 @@ size_t plistnum(const list_t *list)
 	while (node != NULL)
 	{
 		_puts(_itoa(node->num, 10, 0));
-		_putchar("\n");
+		_putchar('\n');
 		node = node->next;
 		n++;
 	}

@@ -22,8 +22,8 @@ void free_info(pseudo_t *pseudo, int all_fields)
 			free_list(&(pseudo->history));
 		if (pseudo->alias)
 			free_list(&(pseudo->alias));
-		afree(pseudo->__imp__environ);
-		pseudo->__imp__environ = NULL;
+		afree(pseudo->environ);
+		pseudo->environ = NULL;
 		_free((void **)pseudo->cmd_buffer);
 		if (pseudo->readfd > 2)
 			close(pseudo->readfd);

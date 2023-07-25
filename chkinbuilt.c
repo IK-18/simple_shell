@@ -10,7 +10,7 @@ int chkinbuilt(pseudo_t *pseudo)
 {
 	int i, index = -1;
 	inbuilt_cmd inbuiltcmds[] = {
-		{"exit", "cause the shell to exit", _exit},
+		{"exit", "cause the shell to exit", __exit},
 		{"env", "prints the current environment", penv},
 		{"help", "display information about inbuilt commands", _help},
 		{"history", "display the command history list with line numbers", _history},
@@ -18,7 +18,7 @@ int chkinbuilt(pseudo_t *pseudo)
 		{"unsetenv", "remove an environment variable", __unsetenv},
 		{"cd", "change the working directory", _cd},
 		{"alias", "define or display aliases", _alias},
-		{NULL, NULL}};
+		{NULL, NULL, NULL}};
 
 	for (i = 0; inbuiltcmds[i].flag; i++)
 	{

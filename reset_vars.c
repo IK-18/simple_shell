@@ -13,7 +13,7 @@ int reset_vars(pseudo_t *pseudo)
 
 	while (pseudo->argv[i])
 	{
-		if (pseudo->argv[i][0] != '$' || pseudo->argv[i][1] == NULL)
+		if (pseudo->argv[i][0] != '$' || !pseudo->argv[i][1])
 			continue;
 
 		if (!_strcmp(pseudo->argv[i], "$?"))

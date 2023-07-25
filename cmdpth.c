@@ -22,10 +22,10 @@ char *cmdpth(pseudo_t *pseudo, char *pth, char *cmd)
 	}
 	for (i = 0; 1; i++)
 	{
-		if (pth[i] == NULL || pth[i] == ':')
+		if (!pth[i] || pth[i] == ':')
 		{
 			str = _chrdup(pth, curr, i);
-			if (*str == NULL)
+			if (!*str)
 				_strcat(str, cmd);
 			else
 			{
@@ -34,7 +34,7 @@ char *cmdpth(pseudo_t *pseudo, char *pth, char *cmd)
 			}
 			if (_iscmd(pseudo, str))
 				return (str);
-			if (pth[i] == NULL)
+			if (!pth[i])
 				break;
 			curr = i + 1;
 		}

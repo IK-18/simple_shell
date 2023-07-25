@@ -9,7 +9,7 @@
 char **ltoa(list_t *list)
 {
 	list_t *node = list;
-	size_t i = listLen(list), j;
+	size_t i = list_len(list), j;
 	char **arr;
 	char *str;
 

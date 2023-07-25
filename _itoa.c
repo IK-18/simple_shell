@@ -13,7 +13,7 @@ char *_itoa(long int num, int base, int is_unsigned)
 	static char *arr;
 	static char buf[50];
 	char sign, *ptr;
-	unsigned long new;
+	unsigned long int new;
 
 	arr = "0123456789ABCDEF";
 	new = num;
@@ -25,11 +25,8 @@ char *_itoa(long int num, int base, int is_unsigned)
 	ptr = &buf[49];
 	*ptr = '\0';
 	for (new; new != 0; new /= base)
-	{
 		*--ptr = arr[new % base];
-		new /= base;
-	}
-	if (sign != NULL)
+	if (sign)
 		*--ptr = sign;
 	return (ptr);
 }

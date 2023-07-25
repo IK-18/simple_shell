@@ -18,7 +18,7 @@ int _unsetalias(pseudo_t *pseudo, char *str)
 	c = *s;
 	*s = '\0';
 	ret = delete_node_at_index(&(pseudo->alias),
-							   get_node_at_index(pseudo->alias, node_prefix(pseudo->alias, str, -1)));
+		get_index_at_node(pseudo->alias, node_prefix(pseudo->alias, str, -1)));
 	*s = c;
 	return (ret);
 }

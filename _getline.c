@@ -34,7 +34,7 @@ ssize_t _getline(pseudo_t *pseudo, char **lineptr, size_t *n)
 	else
 		_strncpy(newptr, buffer, pos + 1);
 	new_pos += pos;
-	ptr = *newptr;
+	ptr = newptr;
 	if (n)
 		*n = new_pos;
 	*lineptr = ptr;

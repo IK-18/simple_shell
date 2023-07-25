@@ -22,7 +22,7 @@ int _setenv(pseudo_t *pseudo, char *prop, char *val)
 	_strcat(buffer, "=");
 	_strcat(buffer, val);
 	node = pseudo->env;
-	for (node; node; node = node->next)
+	for (node; node ; node = node->next)
 	{
 		c = prefix(node->str, prop);
 		if (c && *c == '=')
