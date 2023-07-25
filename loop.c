@@ -2,7 +2,7 @@
 
 /**
  * loop - main shell loop
- * @pseudo: the parameter & return pseudo struct
+ * @pseudo: pseudo struct
  * @argv: argument array
  *
  * Return: 0 on success, 1 otherwise, or error code
@@ -14,24 +14,24 @@ int loop(pseudo_t *pseudo, char *argv[])
 
 	for (i = 0, inbuilt_ret = 0; i != -1 && inbuilt_ret != -2;)
 	{
-		clear_info(pseudo);
+		clear_pseudo(pseudo);
 		if (interact(pseudo))
 			_puts("$ ");
 		eputchar(FLUSH);
 		i = _get(pseudo);
 		if (i != -1)
 		{
-			_setinfo(pseudo, argv);
+			_setpseudo(pseudo, argv);
 			inbuilt_ret = execinbuilt(pseudo);
 			if (inbuilt_ret == -1)
 				chkcmd(pseudo);
 		}
 		else if (interact(pseudo))
 			_putchar('\n');
-		free_info(pseudo, 0);
+		free_pseudo(pseudo, 0);
 	}
 	whistory(pseudo);
-	free_info(pseudo, 1);
+	free_pseudo(pseudo, 1);
 	if (!interact(pseudo) && pseudo->status)
 		exit(pseudo->status);
 	if (inbuilt_ret == -2)

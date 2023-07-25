@@ -9,5 +9,15 @@
  */
 int _putchar(char c)
 {
-	return (write(STDOUT_FILENO, &c, 1));
+	static int i;
+	static char buf[BUF_SIZE];
+
+	if (c == FLUSH || i >= BUF_SIZE)
+	{
+		write(1, buf, i);
+		i = 0;
+	}
+	if (c != FLUSH)
+		buf[i++] = c;
+	return (SUCCESS);
 }

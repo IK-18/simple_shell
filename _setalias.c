@@ -12,9 +12,9 @@ int _setalias(pseudo_t *pseudo, char *str)
 	char *p;
 
 	p = _strchr(str, '=');
-	if (p == 0)
+	if (!p)
 		return (EXIT_FAILURE);
-	if (*++p == 0)
+	if (!*++p)
 		return (_unsetalias(pseudo, str));
 	_unsetalias(pseudo, str);
 	return (add_node_end(&(pseudo->alias), str, 0) == NULL);

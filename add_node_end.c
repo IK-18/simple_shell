@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * add_node_end - aads a new node at the end of a list
+ * add_node_end - adds a new node at the end of a list
  * @list: address of the list
  * @str: address of the string to insert into the new node
  * @num: index of node
@@ -28,7 +28,7 @@ list_t *add_node_end(list_t **list, const char *str, int num)
 			return (NULL);
 		}
 	}
-	if (*list != NULL)
+	if (*list)
 	{
 		for (temp = *list; temp->next; temp = temp->next)
 			;

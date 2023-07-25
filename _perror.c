@@ -2,7 +2,7 @@
 
 /**
  * _perror - prints an error message
- * @pseudo: pseudoinfo struct
+ * @pseudo: pseudo struct
  * @estr: error string
  *
  * Return: Nothing

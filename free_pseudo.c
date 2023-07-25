@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * free_info - frees all fields in struct
+ * free_pseudo - frees all fields in struct
  * @pseudo: struct address
  * @all_fields: boolean to free all fields or not
  *
  * Return: Nothing
  */
-void free_info(pseudo_t *pseudo, int all_fields)
+void free_pseudo(pseudo_t *pseudo, int all_fields)
 {
 	afree(pseudo->argv);
 	pseudo->argv = NULL;

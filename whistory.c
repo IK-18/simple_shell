@@ -13,7 +13,7 @@ int whistory(pseudo_t *pseudo)
 	list_t *node = NULL;
 	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 
-	if (!fname)
+	if (fname == NULL)
 		return (-1);
 	fd = open(fname, O_CREAT | O_TRUNC | O_RDWR, mode);
 	free(fname);
@@ -28,5 +28,5 @@ int whistory(pseudo_t *pseudo)
 	}
 	fdputchar(FLUSH, fd);
 	close(fd);
-	return (EXIT_FAILURE);
+	return (SUCCESS);
 }

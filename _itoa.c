@@ -23,6 +23,8 @@ char *_itoa(long int num, int base, int is_unsigned)
 	}
 	ptr = &buf[49];
 	*ptr = '\0';
+	if (num == 0)
+		*--ptr = arr[num % base];
 	for (new = num; new != 0; new /= base)
 		*--ptr = arr[new % base];
 	if (sign)

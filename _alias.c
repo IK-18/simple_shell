@@ -27,7 +27,7 @@ int _alias(pseudo_t *pseudo)
 		{
 			node = node_prefix(pseudo->alias, pseudo->argv[i], '=');
 			if (node)
-				palias(node_prefix(pseudo->alias, pseudo->argv[i], '='));
+				palias(node);
 		}
 		i++;
 	}

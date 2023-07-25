@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * clear_info - resets pseudo_t struct
+ * clear_pseudo - resets pseudo_t struct
  * @pseudo: pseudo struct
  *
  * Return: Nothing
  */
-void clear_info(pseudo_t *pseudo)
+void clear_pseudo(pseudo_t *pseudo)
 {
 	pseudo->args = NULL;
 	pseudo->argv = NULL;

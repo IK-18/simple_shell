@@ -23,6 +23,7 @@ int _unsetenv(pseudo_t *pseudo, char *prop)
 			pseudo->env_changed = delete_node_at_index(&(pseudo->env), i);
 			i = 0;
 			node = pseudo->env;
+			continue;
 		}
 	}
 	return (pseudo->env_changed);

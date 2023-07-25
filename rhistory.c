@@ -8,37 +8,41 @@
  */
 int rhistory(pseudo_t *pseudo)
 {
-	int i = 0, last = 0, count = 0;
+	int i = 0, last_node = 0, count = 0;
 	ssize_t fd, bytes_read, fsize = 0;
-	struct stat st;
+	struct stat status;
 	char *buffer = NULL, *fname = _gethistory(pseudo);
 
 	if (fname == NULL)
-		return (EXIT_SUCCESS);
+		return (FAILURE);
 	fd = open(fname, O_RDONLY);
 	free(fname);
 	if (fd == -1)
-		return (EXIT_SUCCESS);
-	if (fstat(fd, &st) == 0)
-		fsize = st.st_size;
+		return (FAILURE);
+	if (fstat(fd, &status) == 0)
+		fsize = status.st_size;
 	if (fsize < 2)
-		return (EXIT_SUCCESS);
+		return (FAILURE);
 	buffer = malloc(sizeof(char) * (fsize + 1));
 	if (buffer == NULL)
-		return (EXIT_SUCCESS);
+		return (FAILURE);
 	bytes_read = read(fd, buffer, fsize);
 	buffer[fsize] = '\0';
-	if (bytes_read == -1)
+	if (bytes_read <= 0)
 		return (free(buffer), 0);
 	close(fd);
-	for (i = 0; i < fsize; i++)
+	while (i < fsize)
+	{
 		if (buffer[i] == '\n')
 		{
 			buffer[i] = '\0';
 			add_history(pseudo, buffer, count++);
-			last = i + 1;
+			last_node = i + 1;
 		}
-	add_history(pseudo, buffer + last, count++);
+		i++;
+	}
+	if (last_node != i)
+		add_history(pseudo, buffer + last_node, count++);
 	free(buffer);
 	for (pseudo->histcount = count; pseudo->histcount >= MAX_HISTORY; pseudo->histcount--)
 		delete_node_at_index(&(pseudo->history), 0);

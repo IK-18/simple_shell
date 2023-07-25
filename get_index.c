@@ -3,7 +3,7 @@
 /**
  * get_index_at_node - gets the index of a node
  * @list: pointer to list
- * @node: pointer to the node
+ * @node: pointer to node
  *
  * Return: index of node or -1
  */

@@ -10,5 +10,15 @@
  */
 int fdputchar(char c, int fd)
 {
-	return (write(fd, &c, 1));
+	static int i;
+	static char buf[BUF_SIZE];
+
+	if (c == FLUSH || i >= BUF_SIZE)
+	{
+		write(fd, buf, i);
+		i = 0;
+	}
+	if (c != FLUSH)
+		buf[i++] = c;
+	return (1);
 }

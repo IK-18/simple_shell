@@ -21,7 +21,7 @@ void execcmd(pseudo_t *pseudo)
 	{
 		if (execve(pseudo->path, pseudo->argv, _getenviron(pseudo)) == -1)
 		{
-			free_info(pseudo, 1);
+			free_pseudo(pseudo, 1);
 			if (errno == EACCES)
 				exit(126);
 			exit(EXIT_FAILURE);

@@ -16,7 +16,7 @@
 #define FAILURE 0
 #define SUCCESS 1
 #define BUF_SIZE 1024
-#define FLUSH '\0'
+#define FLUSH -1
 #define NORM 0
 #define OR 1
 #define AND 2
@@ -130,7 +130,7 @@ void _puts(char *str);
 void *_realloc(void *ptr, unsigned int osize, unsigned int nsize);
 int _setalias(pseudo_t *pseudo, char *str);
 int _setenv(pseudo_t *pseudo, char *prop, char *val);
-void _setinfo(pseudo_t *pseudo, char *argv[]);
+void _setpseudo(pseudo_t *pseudo, char *argv[]);
 char *_strcat(char *dest, char *src);
 char *_strchr(char *, char);
 int _strcmp(char *s1, char *s2);
@@ -151,7 +151,7 @@ ssize_t bufcmd(pseudo_t *pseudo, char **buffer, size_t *len);
 void chkcmd(pseudo_t *pseudo);
 void chkmulticmd(pseudo_t *pseudo, char *buffer, size_t *curr, size_t start, size_t len);
 int chkinbuilt(pseudo_t *pseudo);
-void clear_info(pseudo_t *pseudo);
+void clear_pseudo(pseudo_t *pseudo);
 void comments(char *buffer);
 char *cmdpth(pseudo_t *pseudo, char *pth, char *cmd);
 int delete_node_at_index(list_t **head, unsigned int index);
@@ -164,7 +164,7 @@ int execinbuilt(pseudo_t *pseudo);
 int fdputchar(char c, int fd);
 int fdputs(char *str, int fd);
 int fill_env(pseudo_t *pseudo);
-void free_info(pseudo_t *pseudo, int all);
+void free_pseudo(pseudo_t *pseudo, int all);
 void free_list(list_t **list);
 ssize_t get_index_at_node(list_t *list, list_t *node);
 int _history(pseudo_t *pseudo);

@@ -4,28 +4,30 @@
  * _getline - function to store an entire line from input
  * @pseudo: pseudo struct
  * @lineptr: pointer to input buffer
- * @n: size of pointer buffer
+ * @size: size of pointer buffer
  *
  * Return: number of characters from input, -1 on error
  */
-ssize_t _getline(pseudo_t *pseudo, char **lineptr, size_t *n)
+ssize_t _getline(pseudo_t *pseudo, char **lineptr, size_t *size)
 {
 	static char buffer[BUF_SIZE];
-	static size_t bufsize;
+	static size_t nothing, bufsize;
 	ssize_t new_pos, bytes_read;
-	char *newptr, *ptr, *chptr;
 	size_t pos;
+	char *newptr, *ptr, *chptr;
 
-	if (lineptr == NULL || n == 0)
+	if (lineptr == NULL || size == 0)
 		return (-1);
 	ptr = *lineptr;
-	if (ptr && n)
-		new_pos = *n;
+	if (ptr && size)
+		new_pos = *size;
+	if (nothing == bufsize)
+		nothing = bufsize = 0;
 	bytes_read = rbuf(pseudo, buffer, &bufsize);
-	if (bytes_read == 0 || bytes_read == -1)
+	if ((bytes_read == 0 && bufsize == 0) || bytes_read == -1)
 		return (-1);
-	chptr = _strchr(buffer, '\n');
-	pos = chptr ? 1 + (unsigned int)(chptr - buffer) : 0;
+	chptr = _strchr(buffer + nothing, '\n');
+	pos = chptr ? 1 + (unsigned int)(chptr - buffer) : bufsize;
 	newptr = _realloc(ptr, new_pos, new_pos ? new_pos + pos : pos + 1);
 	if (newptr == NULL)
 		return (ptr ? free(ptr), -1 : 1);
@@ -33,10 +35,11 @@ ssize_t _getline(pseudo_t *pseudo, char **lineptr, size_t *n)
 		_strncat(newptr, buffer, pos);
 	else
 		_strncpy(newptr, buffer, pos + 1);
-	new_pos += pos;
+	new_pos += pos - nothing;
+	nothing = pos;
 	ptr = newptr;
-	if (n)
-		*n = new_pos;
+	if (size)
+		*size = new_pos;
 	*lineptr = ptr;
 	return (new_pos);
 }

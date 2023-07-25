@@ -11,5 +11,5 @@ int reset_string(char **old_string, char *new_string)
 {
 	free(*old_string);
 	*old_string = new_string;
-	return (EXIT_FAILURE);
+	return (SUCCESS);
 }

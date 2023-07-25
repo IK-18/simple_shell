@@ -15,24 +15,23 @@ int reset_vars(pseudo_t *pseudo)
 	{
 		if (pseudo->argv[i][0] != '$' || !pseudo->argv[i][1])
 			continue;
-
 		if (!_strcmp(pseudo->argv[i], "$?"))
 		{
 			reset_string(&(pseudo->argv[i]),
-						 _strdup(_itoa(pseudo->status, 10, 0)));
+				_strdup(_itoa(pseudo->status, 10, 0)));
 			continue;
 		}
 		if (!_strcmp(pseudo->argv[i], "$$"))
 		{
 			reset_string(&(pseudo->argv[i]),
-						 _strdup(_itoa(getpid(), 10, 0)));
+				_strdup(_itoa(getpid(), 10, 0)));
 			continue;
 		}
 		node = node_prefix(pseudo->env, &pseudo->argv[i][1], '=');
 		if (node != NULL)
 		{
 			reset_string(&(pseudo->argv[i]),
-						 _strdup(_strchr(node->str, '=') + 1));
+				_strdup(_strchr(node->str, '=') + 1));
 			continue;
 		}
 		reset_string(&pseudo->argv[i], _strdup(""));

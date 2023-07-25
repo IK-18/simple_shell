@@ -9,5 +9,15 @@
  */
 int eputchar(char c)
 {
-	return (write(STDERR_FILENO, &c, 1));
+	static int i;
+	static char buf[BUF_SIZE];
+
+	if (c == FLUSH || i >= BUF_SIZE)
+	{
+		write(2, buf, i);
+		i = 0;
+	}
+	if (c != FLUSH)
+		buf[i++] = c;
+	return (1);
 }

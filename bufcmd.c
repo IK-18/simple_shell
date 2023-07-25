@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * bufcmd - buffers chained commands
+ * bufcmd - buffers mulitple commands
  * @pseudo: pseudo struct
  * @buffer: buffer
  * @len: length of input
@@ -13,7 +13,7 @@ ssize_t bufcmd(pseudo_t *pseudo, char **buffer, size_t *len)
 	ssize_t bytes_read = 0;
 	size_t len_ptr = 0;
 
-	if (*len == 0)
+	if (!*len)
 	{
 		free(*buffer);
 		*buffer = NULL;

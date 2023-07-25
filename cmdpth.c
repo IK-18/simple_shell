@@ -10,7 +10,7 @@
  */
 char *cmdpth(pseudo_t *pseudo, char *pth, char *cmd)
 {
-	int i, curr = 0;
+	int i, pos = 0;
 	char *str;
 
 	if (pth == NULL)
@@ -24,7 +24,7 @@ char *cmdpth(pseudo_t *pseudo, char *pth, char *cmd)
 	{
 		if (!pth[i] || pth[i] == ':')
 		{
-			str = _chrdup(pth, curr, i);
+			str = _chrdup(pth, pos, i);
 			if (!*str)
 				_strcat(str, cmd);
 			else
@@ -36,7 +36,7 @@ char *cmdpth(pseudo_t *pseudo, char *pth, char *cmd)
 				return (str);
 			if (!pth[i])
 				break;
-			curr = i + 1;
+			pos = i;
 		}
 	}
 	return (NULL);

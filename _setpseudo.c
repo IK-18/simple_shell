@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * _setinfo - initializes pseudo struct
+ * _setpseudo - initializes pseudo struct
  * @pseudo: pseudo struct
  * @argv: array of arguments
  *
  * Return: Nothing
  */
-void _setinfo(pseudo_t *pseudo, char *argv[])
+void _setpseudo(pseudo_t *pseudo, char *argv[])
 {
 	int i = 0;
 

@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * ltoa - converts a lst to an array of strings
+ * ltoa - converts a list to an array of strings
  * @list: pointer to first node of list
  *
  * Return: array of strings or NULL
@@ -18,18 +18,25 @@ char **ltoa(list_t *list)
 	arr = malloc(sizeof(char *) * (i + 1));
 	if (arr == NULL)
 		return (NULL);
-	for (i = 0; node; node = node->next, i++)
+	i = 0;
+	while (node)
 	{
 		str = malloc(_strlen(node->str) + 1);
 		if (str == NULL)
 		{
-			for (j = 0; j < i; j++)
+			j = 0;
+			while (j < i)
+			{
 				free(arr[j]);
+				j++;
+			}
 			free(arr);
 			return (NULL);
 		}
 		str = _strcpy(str, node->str);
 		arr[i] = str;
+		node = node->next;
+		i++;
 	}
 	arr[i] = NULL;
 	return (arr);
