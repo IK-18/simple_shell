@@ -8,7 +8,6 @@
  */
 void sigBlocker(__attribute__((unused)) int signum)
 {
-	_puts('\n');
-	_puts("$ ");
+	_puts("\n$ ");
 	_putchar(FLUSH);
 }
