@@ -18,7 +18,9 @@ ssize_t bufcmd(pseudo_t *pseudo, char **buffer, size_t *len)
 		free(*buffer);
 		*buffer = NULL;
 		signal(SIGINT, sigBlocker);
+		_puts("Before getline");
 		bytes_read = _getline(pseudo, buffer, &len_ptr);
+		_puts("After getline");
 		if (bytes_read > 0)
 		{
 			if ((*buffer)[bytes_read - 1] == '\n')

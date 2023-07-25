@@ -14,14 +14,18 @@ ssize_t _get(pseudo_t *pseudo)
 	char **buf_ptr = &(pseudo->args), *ptr;
 
 	_putchar(FLUSH);
+	_puts("Before bufcmd");
 	bytes_read = bufcmd(pseudo, &buffer, &len);
+	_puts("After bufcmd");
 	if (bytes_read < 0)
 		return (-1);
 	if (len)
 	{
 		new_pos = pos;
 		ptr = buffer + pos;
+		_puts("Before chkmulti");
 		chkmulticmd(pseudo, buffer, &new_pos, pos, len);
+		_puts("After chkmulti");
 		for (; new_pos < len; new_pos++)
 		{
 			if (_ismulticmd(pseudo, buffer, &new_pos))
