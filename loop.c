@@ -18,7 +18,9 @@ int loop(pseudo_t *pseudo, char *argv[])
 		if (interact(pseudo))
 			_puts("$ ");
 		eputchar(FLUSH);
+		_puts("Before get\n");
 		i = _get(pseudo);
+		_puts("After get\n");
 		if (i != -1)
 		{
 			_setpseudo(pseudo, argv);
