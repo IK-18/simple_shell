@@ -169,7 +169,7 @@ ssize_t get_index_at_node(list_t *list, list_t *node);
 int _history(pseudo_t *pseudo);
 int interact(pseudo_t *pseudo);
 size_t list_len(const list_t *list);
-int loop(pseudo_t *pseudo, char *argv[]);
+int loop(pseudo_t *pseudo, char **argv);
 char **__ltoa(list_t *list);
 list_t *node_prefix(list_t *list, char *str, char c);
 int palias(list_t *node);
