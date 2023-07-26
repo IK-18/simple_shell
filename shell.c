@@ -7,7 +7,7 @@
  *
  * Return: 0 on success, 1 on error
  */
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **envp)
 {
 	pseudo_t pseudo[] = {PSEUDO};
 	int fd = 2;
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 		}
 		pseudo->readfd = fd;
 	}
-	fill_env(pseudo);
+	fill_env(pseudo, envp);
 	rhistory(pseudo);
 	loop(pseudo, argv);
 	return (EXIT_SUCCESS);
