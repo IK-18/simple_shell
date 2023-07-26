@@ -10,7 +10,7 @@
  */
 char *_chrdup(char *pth, int begin, int end)
 {
-	static char buffer[1024];
+	static char buffer[BUF_SIZE];
 	int i = 0, k = 0;
 
 	i = begin;

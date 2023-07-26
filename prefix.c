@@ -9,9 +9,9 @@
  */
 char *prefix(const char *str, const char *c)
 {
-	for (; *c; c++)
+	while (*c)
 	{
-		if (*c != *str++)
+		if (*c++ != *str++)
 			return (NULL);
 	}
 	return ((char *)str);

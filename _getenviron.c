@@ -1,17 +1,17 @@
 #include "shell.h"
 
 /**
- * _getenviron - gets a string array copy of the environ
+ * _getenviron - gets a string array copy of the envcpy
  * @pseudo: pseudo struct
  *
  * Return: string array
  */
 char **_getenviron(pseudo_t *pseudo)
 {
-	if (!pseudo->environ || pseudo->env_changed)
+	if (!pseudo->envcpy || pseudo->env_changed)
 	{
-		pseudo->environ = __ltoa(pseudo->env);
+		pseudo->envcpy = __ltoa(pseudo->env);
 		pseudo->env_changed = 0;
 	}
-	return (pseudo->environ);
+	return (pseudo->envcpy);
 }

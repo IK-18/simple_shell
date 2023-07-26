@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _getenv - obtains the value of an environ variable
+ * _getenv - obtains the value of an env variable
  * @pseudo: pseudo struct
  * @var: env variable name
  *

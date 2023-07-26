@@ -4,7 +4,7 @@
  * reset_vars - resets vars in the tokenized string
  * @pseudo: pseudo struct
  *
- * Return: 1 if replaced, 0 otherwise
+ * Return: Always 0
  */
 int reset_vars(pseudo_t *pseudo)
 {
@@ -18,20 +18,20 @@ int reset_vars(pseudo_t *pseudo)
 		if (!_strcmp(pseudo->argv[i], "$?"))
 		{
 			reset_string(&(pseudo->argv[i]),
-				__strdup(__itoa(pseudo->status, 10, 0)));
+						 __strdup(__itoa(pseudo->status, 10, 0)));
 			continue;
 		}
 		if (!_strcmp(pseudo->argv[i], "$$"))
 		{
 			reset_string(&(pseudo->argv[i]),
-				__strdup(__itoa(getpid(), 10, 0)));
+						 __strdup(__itoa(getpid(), 10, 0)));
 			continue;
 		}
 		node = node_prefix(pseudo->env, &pseudo->argv[i][1], '=');
 		if (node)
 		{
 			reset_string(&(pseudo->argv[i]),
-				__strdup(_strchr(node->str, '=') + 1));
+						 __strdup(_strchr(node->str, '=') + 1));
 			continue;
 		}
 		reset_string(&pseudo->argv[i], __strdup(""));

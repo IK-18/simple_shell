@@ -24,7 +24,7 @@ char **_strtok(char *str, char *delim)
 	}
 	if (len == 0)
 		return (NULL);
-	arr = malloc((len + 1) * sizeof(char *));
+	arr = malloc((1 + len) * sizeof(char *));
 	if (!arr)
 		return (NULL);
 	for (a = 0, b = 0; b < len; b++)

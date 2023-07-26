@@ -5,7 +5,7 @@
  * @old_string: old string
  * @new_string: new string
  *
- * Return: 1 if replaced, 0 otherwise
+ * Return: Always 1
  */
 int reset_string(char **old_string, char *new_string)
 {

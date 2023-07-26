@@ -30,8 +30,6 @@
 			0, 0, 0                                                             \
 	}
 
-extern char **environ;
-
 /**
  * struct listintstr - a singly linked list
  * @num: number
@@ -57,7 +55,7 @@ typedef struct listintstr
  * @linecount_flag: if 1, count this line of input
  * @fname: filename
  * @env: local copy of environment
- * @environ: copy of environment from LL env
+ * @envcpy: copy of environment from LL env
  * @history: history list
  * @alias: alias
  * @env_changed: 1 if environment was changed
@@ -81,7 +79,7 @@ typedef struct pseudo
 	list_t *env;
 	list_t *history;
 	list_t *alias;
-	char **environ;
+	char **envcpy;
 	int env_changed;
 	int status;
 	char **cmd_buffer;

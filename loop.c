@@ -7,7 +7,7 @@
  *
  * Return: 0 on success, 1 otherwise, or error code
  */
-int loop(pseudo_t *pseudo, char *argv[])
+int loop(pseudo_t *pseudo, char **argv)
 {
 	ssize_t i;
 	int inbuilt_ret;

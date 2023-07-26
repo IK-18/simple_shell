@@ -17,10 +17,9 @@ char *__strdup(const char *str)
 	while (*(str + len) != '\0')
 		len++;
 	newstr = malloc(sizeof(char) * (len + 1));
-	if (newstr == NULL)
+	if (!newstr)
 		return (NULL);
 	for (i = 0; i < len; i++)
 		*(newstr + i) = *(str + i);
-	*(newstr + i) = '\0';
 	return (newstr);
 }

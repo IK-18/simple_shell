@@ -15,7 +15,7 @@ char *__itoa(long int num, int base, int is_unsigned)
 	char sign = 0, *ptr;
 	unsigned long int new;
 
-	arr = "0123456789ABCDEF";
+	arr = is_unsigned ? "0123456789abcdef" : "0123456789ABCDEF";
 	if (is_unsigned == 0 && num < 0)
 	{
 		num = -num;
