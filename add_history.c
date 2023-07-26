@@ -10,10 +10,12 @@
  */
 int add_history(pseudo_t *pseudo, char *buffer, int histcount)
 {
-	list_t *node = pseudo->history;
+	list_t *node = NULL;
 
+	if (pseudo->history)
+		node = pseudo->history;
 	add_node_end(&node, buffer, histcount);
-	if (pseudo->history == NULL)
+	if (!pseudo->history)
 		pseudo->history = node;
 	return (EXIT_SUCCESS);
 }

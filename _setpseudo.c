@@ -12,10 +12,10 @@ void _setpseudo(pseudo_t *pseudo, char *argv[])
 	int i = 0;
 
 	pseudo->fname = argv[0];
-	if (pseudo->args != NULL)
+	if (pseudo->args)
 	{
 		pseudo->argv = _strtok(pseudo->args, " \t");
-		if (pseudo->argv == NULL)
+		if (!pseudo->argv)
 		{
 			pseudo->argv = malloc(sizeof(char *) * 2);
 			if (pseudo->argv)
@@ -24,7 +24,7 @@ void _setpseudo(pseudo_t *pseudo, char *argv[])
 				pseudo->argv[1] = NULL;
 			}
 		}
-		while (pseudo->argv != NULL && pseudo->argv[i] != NULL)
+		while (pseudo->argv && pseudo->argv[i])
 			i++;
 		pseudo->argc = i;
 		reset_alias(pseudo);

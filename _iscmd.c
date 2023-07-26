@@ -12,7 +12,7 @@ int _iscmd(pseudo_t *pseudo, char *pth)
 	struct stat status;
 
 	(void)pseudo;
-	if (pth == NULL || stat(pth, &status) != 0)
+	if (!pth || stat(pth, &status))
 		return (FAILURE);
 	if (status.st_mode & S_IFREG)
 		return (SUCCESS);

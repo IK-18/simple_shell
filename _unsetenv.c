@@ -13,12 +13,12 @@ int _unsetenv(pseudo_t *pseudo, char *prop)
 	size_t i;
 	char *c;
 
-	if (pseudo->env == NULL || prop == NULL)
+	if (!pseudo->env || !prop)
 		return (FAILURE);
 	for (i = 0, node = pseudo->env; node; node = node->next, i++)
 	{
 		c = prefix(node->str, prop);
-		if (c != NULL && *c == '=')
+		if (c && *c == '=')
 		{
 			pseudo->env_changed = delete_node_at_index(&(pseudo->env), i);
 			i = 0;

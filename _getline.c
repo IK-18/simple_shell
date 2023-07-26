@@ -16,8 +16,6 @@ ssize_t _getline(pseudo_t *pseudo, char **lineptr, size_t *size)
 	size_t pos;
 	char *newptr, *ptr, *chptr;
 
-	if (lineptr == NULL || size == 0)
-		return (-1);
 	ptr = *lineptr;
 	if (ptr && size)
 		new_pos = *size;
@@ -29,7 +27,7 @@ ssize_t _getline(pseudo_t *pseudo, char **lineptr, size_t *size)
 	chptr = _strchr(buffer + nothing, '\n');
 	pos = chptr ? 1 + (unsigned int)(chptr - buffer) : bufsize;
 	newptr = _realloc(ptr, new_pos, new_pos ? new_pos + pos : pos + 1);
-	if (newptr == NULL)
+	if (!newptr)
 		return (ptr ? free(ptr), -1 : 1);
 	if (new_pos)
 		_strncat(newptr, buffer, pos);

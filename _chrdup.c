@@ -3,18 +3,18 @@
 /**
  * _chrdup - duplicates a character in a buffer up to a point
  * @pth: the PATH string
- * @start: starting index
- * @stop: stopping index
+ * @begin: first index
+ * @end: last index
  *
  * Return: pointer to new buffer
  */
-char *_chrdup(char *pth, int start, int stop)
+char *_chrdup(char *pth, int begin, int end)
 {
 	static char buffer[1024];
 	int i = 0, k = 0;
 
-	i = start;
-	while (i < stop)
+	i = begin;
+	while (i < end)
 	{
 		if (pth[i] != ':')
 			buffer[k++] = pth[i];

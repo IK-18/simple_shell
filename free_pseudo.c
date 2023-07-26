@@ -14,7 +14,7 @@ void free_pseudo(pseudo_t *pseudo, int all_fields)
 	pseudo->path = NULL;
 	if (all_fields)
 	{
-		if (pseudo->cmd_buffer == NULL)
+		if (!pseudo->cmd_buffer)
 			free(pseudo->args);
 		if (pseudo->env)
 			free_list(&(pseudo->env));

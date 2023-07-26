@@ -17,7 +17,7 @@ int _ismulticmd(pseudo_t *pseudo, char *buffer, size_t *curr)
 	case '|':
 		if (buffer[pos + 1] == '|')
 		{
-			buffer[pos] = '\0';
+			buffer[pos] = 0;
 			pos++;
 			pseudo->cmd_buffer_type = OR;
 			break;
@@ -27,7 +27,7 @@ int _ismulticmd(pseudo_t *pseudo, char *buffer, size_t *curr)
 	case '&':
 		if (buffer[pos + 1] == '&')
 		{
-			buffer[pos] = '\0';
+			buffer[pos] = 0;
 			pos++;
 			pseudo->cmd_buffer_type = AND;
 			break;
@@ -35,7 +35,7 @@ int _ismulticmd(pseudo_t *pseudo, char *buffer, size_t *curr)
 		else
 			return (FAILURE);
 	case ';':
-		buffer[pos] = '\0';
+		buffer[pos] = 0;
 		pseudo->cmd_buffer_type = MULTI_CMD;
 		break;
 	default:

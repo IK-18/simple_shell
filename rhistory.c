@@ -13,21 +13,21 @@ int rhistory(pseudo_t *pseudo)
 	struct stat status;
 	char *buffer = NULL, *fname = _gethistory(pseudo);
 
-	if (fname == NULL)
+	if (!fname)
 		return (FAILURE);
 	fd = open(fname, O_RDONLY);
 	free(fname);
-	if (fd == -1)
+	if (fd < 0)
 		return (FAILURE);
-	if (fstat(fd, &status) == 0)
+	if (!fstat(fd, &status))
 		fsize = status.st_size;
 	if (fsize < 2)
 		return (FAILURE);
 	buffer = malloc(sizeof(char) * (fsize + 1));
-	if (buffer == NULL)
+	if (!buffer)
 		return (FAILURE);
 	bytes_read = read(fd, buffer, fsize);
-	buffer[fsize] = '\0';
+	buffer[fsize] = 0;
 	if (bytes_read <= 0)
 		return (free(buffer), 0);
 	close(fd);
@@ -35,8 +35,8 @@ int rhistory(pseudo_t *pseudo)
 	{
 		if (buffer[i] == '\n')
 		{
-			buffer[i] = '\0';
-			add_history(pseudo, buffer, count++);
+			buffer[i] = 0;
+			add_history(pseudo, buffer + last_node, count++);
 			last_node = i + 1;
 		}
 		i++;

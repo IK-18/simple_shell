@@ -9,7 +9,7 @@
 int _isalpha(int c)
 {
 	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
-		return (EXIT_FAILURE);
+		return (SUCCESS);
 	else
-		return (EXIT_SUCCESS);
+		return (FAILURE);
 }

@@ -13,10 +13,10 @@ char **__ltoa(list_t *list)
 	char **arr;
 	char *str;
 
-	if (list == NULL || !i)
+	if (!list || !i)
 		return (NULL);
 	arr = malloc(sizeof(char *) * (i + 1));
-	if (arr == NULL)
+	if (!arr)
 		return (NULL);
 	i = 0;
 	while (node)

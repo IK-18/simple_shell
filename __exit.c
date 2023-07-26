@@ -10,7 +10,7 @@ int __exit(pseudo_t *pseudo)
 {
 	int chk = -1;
 
-	if (pseudo->argv[1] != NULL)
+	if (pseudo->argv[1])
 	{
 		chk = eatoi(pseudo->argv[1]);
 		if (chk < 0)

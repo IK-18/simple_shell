@@ -12,17 +12,17 @@ list_t *add_node_end(list_t **list, const char *str, int num)
 {
 	list_t *temp, *new;
 
-	if (list == NULL)
+	if (!list)
 		return (NULL);
 	new = malloc(sizeof(list_t));
-	if (new == NULL)
+	if (!new)
 		return (NULL);
 	_memset((void *)new, 0, sizeof(list_t));
 	new->num = num;
-	if (str != NULL)
+	if (str)
 	{
 		new->str = __strdup(str);
-		if (new->str == NULL)
+		if (!new->str)
 		{
 			free(new);
 			return (NULL);

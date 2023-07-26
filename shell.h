@@ -13,6 +13,7 @@
 #include <errno.h>
 #include <signal.h>
 
+#define GETLINE 0
 #define FAILURE 0
 #define SUCCESS 1
 #define BUF_SIZE 1024

@@ -12,17 +12,17 @@ list_t *add_node(list_t **list, const char *str, int num)
 {
 	list_t *new_node;
 
-	if (list == NULL)
+	if (!list)
 		return (NULL);
 	new_node = malloc(sizeof(list_t));
-	if (new_node == NULL)
+	if (!new_node)
 		return (NULL);
 	_memset((void *)new_node, 0, sizeof(list_t));
 	new_node->num = num;
-	if (str != NULL)
+	if (!str)
 	{
 		new_node->str = __strdup(str);
-		if (new_node->str == NULL)
+		if (!new_node->str)
 		{
 			free(new_node);
 			return (NULL);
@@ -30,5 +30,5 @@ list_t *add_node(list_t **list, const char *str, int num)
 	}
 	new_node->next = *list;
 	*list = new_node;
-	return (*list);
+	return (new_node);
 }

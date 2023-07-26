@@ -15,14 +15,14 @@ int reset_alias(pseudo_t *pseudo)
 	while (i < 10)
 	{
 		node = node_prefix(pseudo->alias, pseudo->argv[0], '=');
-		if (node == NULL)
+		if (!node)
 			return (FAILURE);
 		free(pseudo->argv[0]);
 		c = _strchr(node->str, '=');
-		if (c == NULL)
+		if (!c)
 			return (FAILURE);
 		c = __strdup(c + 1);
-		if (c == NULL)
+		if (!c)
 			return (FAILURE);
 		pseudo->argv[0] = c;
 		i++;

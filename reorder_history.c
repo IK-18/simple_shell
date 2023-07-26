@@ -11,7 +11,7 @@ int reorder_history(pseudo_t *pseudo)
 	list_t *node;
 	int i;
 
-	for (i = 0, node = pseudo->history; node; node = node->next, i++)
-		node->num = i;
+	for (i = 0, node = pseudo->history; node; node = node->next)
+		node->num = i++;
 	return (pseudo->histcount = i);
 }

@@ -11,12 +11,12 @@ char *_gethistory(pseudo_t *pseudo)
 	char *buffer, *dir;
 
 	dir = _getenv(pseudo, "HOME=");
-	if (dir == NULL)
+	if (!dir)
 		return (NULL);
 	buffer = malloc(sizeof(char) * (_strlen(dir) + _strlen(HISTORY) + 2));
-	if (buffer == NULL)
+	if (!buffer)
 		return (NULL);
-	buffer[0] = '\0';
+	buffer[0] = 0;
 	_strcpy(buffer, dir);
 	_strcat(buffer, "/");
 	_strcat(buffer, HISTORY);

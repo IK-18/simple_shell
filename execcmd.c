@@ -14,7 +14,7 @@ void execcmd(pseudo_t *pseudo)
 	if (child == -1)
 	{
 		perror("Error: ");
-		eputs("Canont fork\n");
+		/* eputs("Canont fork\n"); */
 		return;
 	}
 	if (child == 0)

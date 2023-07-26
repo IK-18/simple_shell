@@ -11,7 +11,7 @@ int fill_env(pseudo_t *pseudo)
 	size_t i = 0;
 	list_t *node = NULL;
 
-	while (environ[i] != NULL)
+	while (environ[i])
 	{
 		add_node_end(&node, environ[i], 0);
 		i++;

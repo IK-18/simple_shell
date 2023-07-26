@@ -13,7 +13,7 @@ char *cmdpth(pseudo_t *pseudo, char *pth, char *cmd)
 	int i, pos = 0;
 	char *str;
 
-	if (pth == NULL)
+	if (!pth)
 		return (NULL);
 	if ((_strlen(cmd) > 2) && prefix(cmd, "./"))
 	{

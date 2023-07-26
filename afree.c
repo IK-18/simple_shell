@@ -10,9 +10,9 @@ void afree(char **arr)
 {
 	char **tmp = arr;
 
-	if (arr == NULL)
+	if (!arr)
 		return;
-	for (; *arr; arr++)
-		free(*arr);
+	while (*arr)
+		free(*arr++);
 	free(tmp);
 }

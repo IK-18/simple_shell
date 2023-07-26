@@ -8,21 +8,19 @@
  */
 int _cd(pseudo_t *pseudo)
 {
-	char *cwd, buffer[1024];
+	char *cwd, *dir, buffer[1024];
 	int ret;
 
 	cwd = getcwd(buffer, 1024);
 	if (cwd == NULL)
-	{
 		_puts("Failed to get current working directory\n");
-		return (EXIT_FAILURE);
-	}
-	if (pseudo->argv[1] == NULL)
+	if (!pseudo->argv[1])
 	{
-		if (_getenv(pseudo, "HOME=") == NULL)
+		dir = _getenv(pseudo, "HOME=");
+		if (dir == NULL)
 			ret = chdir((_getenv(pseudo, "PWD=")) ? _getenv(pseudo, "PWD=") : "/");
 		else
-			ret = chdir(_getenv(pseudo, "HOME="));
+			ret = chdir(dir);
 	}
 	else if (_strcmp(pseudo->argv[1], "-") == 0)
 	{

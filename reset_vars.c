@@ -28,7 +28,7 @@ int reset_vars(pseudo_t *pseudo)
 			continue;
 		}
 		node = node_prefix(pseudo->env, &pseudo->argv[i][1], '=');
-		if (node != NULL)
+		if (node)
 		{
 			reset_string(&(pseudo->argv[i]),
 				__strdup(_strchr(node->str, '=') + 1));

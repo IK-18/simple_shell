@@ -11,14 +11,13 @@ size_t plist(list_t *list)
 	size_t n = 0;
 	list_t *node;
 
-	for (node = list; node != NULL; node = node->next)
+	for (node = list; node; node = node->next, n++)
 	{
 		_puts(__itoa(node->num, 10, 0));
 		_putchar(':');
 		_putchar(' ');
 		_puts(node->str ? node->str : "(nil)");
 		_putchar('\n');
-		n++;
 	}
 	return (n);
 }

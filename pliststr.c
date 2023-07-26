@@ -12,7 +12,7 @@ size_t pliststr(list_t *list)
 	list_t *node;
 
 	node = list;
-	while (node != NULL)
+	while (!node)
 	{
 		_puts(node->str ? node->str : "(nil)");
 		_putchar('\n');

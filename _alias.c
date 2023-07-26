@@ -21,14 +21,10 @@ int _alias(pseudo_t *pseudo)
 	while (pseudo->argv[i])
 	{
 		c = _strchr(pseudo->argv[i], '=');
-		if (c != NULL)
+		if (c)
 			_setalias(pseudo, pseudo->argv[i]);
 		else
-		{
-			node = node_prefix(pseudo->alias, pseudo->argv[i], '=');
-			if (node)
-				palias(node);
-		}
+			palias(node_prefix(pseudo->alias, pseudo->argv[i], '='));
 		i++;
 	}
 	return (EXIT_SUCCESS);

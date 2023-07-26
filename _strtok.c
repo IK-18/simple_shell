@@ -13,9 +13,9 @@ char **_strtok(char *str, char *delim)
 	char **arr;
 	int a, b, c, d, len = 0;
 
-	if (str == NULL || str[0] == '\0')
+	if (str == NULL || str[0] == 0)
 		return (NULL);
-	if (delim == NULL)
+	if (!delim)
 		delim = " ";
 	for (a = 0; str[a] != '\0'; a++)
 	{
@@ -36,11 +36,8 @@ char **_strtok(char *str, char *delim)
 		arr[b] = malloc((c + 1) * sizeof(char));
 		if (!arr[b])
 		{
-			while (c < b)
-			{
+			for (c = 0; c < b; c++)
 				free(arr[c]);
-				c++;
-			}
 			free(arr);
 			return (NULL);
 		}

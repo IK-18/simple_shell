@@ -12,13 +12,10 @@ ssize_t get_index_at_node(list_t *list, list_t *node)
 	list_t *tmp;
 	size_t i = 0;
 
-	tmp = list;
-	while (tmp != NULL)
+	for (tmp = list; tmp; tmp = tmp->next, i++)
 	{
 		if (tmp == node)
 			return (i);
-		tmp = tmp->next;
-		i++;
 	}
 	return (-1);
 }

@@ -11,7 +11,7 @@ int whistory(pseudo_t *pseudo)
 	ssize_t fd;
 	char *fname = _gethistory(pseudo);
 	list_t *node = NULL;
-	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
 
 	if (fname == NULL)
 		return (-1);

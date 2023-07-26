@@ -11,7 +11,7 @@
  */
 int execinbuilt(pseudo_t *pseudo)
 {
-	int i, inbuilt_ret = -1;
+	int i = 0, inbuilt_ret = -1;
 	inbuilt_cmd inbuiltcmds[] = {
 		{"exit", "cause the shell to exit", __exit},
 		{"env", "prints the current environment", penv},
@@ -23,7 +23,7 @@ int execinbuilt(pseudo_t *pseudo)
 		{"alias", "define or display aliases", _alias},
 		{NULL, NULL, NULL}};
 
-	for (i = 0; inbuiltcmds[i].flag; i++)
+	while (inbuiltcmds[i].flag)
 	{
 		if (!_strcmp(pseudo->argv[0], inbuiltcmds[i].flag))
 		{
@@ -31,6 +31,7 @@ int execinbuilt(pseudo_t *pseudo)
 			inbuilt_ret = inbuiltcmds[i].function(pseudo);
 			break;
 		}
+		i++;
 	}
 	return (inbuilt_ret);
 }

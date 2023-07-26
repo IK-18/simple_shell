@@ -12,7 +12,7 @@ int delete_node_at_index(list_t **list, unsigned int index)
 	list_t *temp, *prev;
 	unsigned int i;
 
-	if (*list == NULL || list == NULL)
+	if (!*list || !list)
 		return (FAILURE);
 	if (index == 0)
 	{
