@@ -13,6 +13,7 @@ int palias(list_t *node)
 	if (node)
 	{
 		a = _strchr(node->str, '=');
+		b = node->str;
 		while (b <= a)
 		{
 			_putchar(*b);

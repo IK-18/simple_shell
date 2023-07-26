@@ -9,9 +9,9 @@
  */
 int _chrcmp(char c, char *str)
 {
-	for (; *str; str++)
+	while (*str)
 	{
-		if (*str == c)
+		if (*str++ == c)
 			return (SUCCESS);
 	}
 	return (FAILURE);

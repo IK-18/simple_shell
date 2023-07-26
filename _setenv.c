@@ -24,7 +24,7 @@ int _setenv(pseudo_t *pseudo, char *prop, char *val)
 	for (node = pseudo->env; node; node = node->next)
 	{
 		c = prefix(node->str, prop);
-		if (c && *c == '=')
+		if (*c == '=' && c)
 		{
 			free(node->str);
 			node->str = buffer;

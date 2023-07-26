@@ -15,6 +15,7 @@ ssize_t bufcmd(pseudo_t *pseudo, char **buffer, size_t *len)
 
 	if (!*len)
 	{
+		/*_free((void **)pseudo->cmd_buffer);*/
 		free(*buffer);
 		*buffer = NULL;
 		signal(SIGINT, sigBlocker);

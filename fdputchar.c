@@ -20,5 +20,5 @@ int fdputchar(char c, int fd)
 	}
 	if (c != FLUSH)
 		buf[i++] = c;
-	return (1);
+	return (SUCCESS);
 }

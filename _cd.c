@@ -12,26 +12,28 @@ int _cd(pseudo_t *pseudo)
 	int ret;
 
 	cwd = getcwd(buffer, 1024);
-	if (cwd == NULL)
+	if (!cwd)
 		_puts("Failed to get current working directory\n");
 	if (!pseudo->argv[1])
 	{
 		dir = _getenv(pseudo, "HOME=");
-		if (dir == NULL)
-			ret = chdir((_getenv(pseudo, "PWD=")) ? _getenv(pseudo, "PWD=") : "/");
+		if (!dir)
+			ret =
+				chdir((dir = _getenv(pseudo, "PWD=")) ? dir : "/");
 		else
 			ret = chdir(dir);
 	}
 	else if (_strcmp(pseudo->argv[1], "-") == 0)
 	{
-		if (_getenv(pseudo, "OLDPWD=") == NULL)
+		if (!_getenv(pseudo, "OLDPWD="))
 		{
 			_puts(cwd);
 			_putchar('\n');
 			return (EXIT_FAILURE);
 		}
 		_puts(_getenv(pseudo, "OLDPWD=")), _putchar('\n');
-		ret = chdir((_getenv(pseudo, "OLDPWD=")) ? _getenv(pseudo, "OLDPWD=") : "/");
+		ret =
+			chdir((dir = _getenv(pseudo, "OLDPWD=")) ? dir : "/");
 	}
 	else
 		ret = chdir(pseudo->argv[1]);

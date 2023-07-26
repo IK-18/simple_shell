@@ -14,15 +14,21 @@ void chkmulticmd(pseudo_t *pseudo, char *b, size_t *cur, size_t st, size_t len)
 {
 	size_t i = *cur;
 
-	if (pseudo->cmd_buffer_type == AND && pseudo->status)
+	if (pseudo->cmd_buffer_type == AND)
 	{
-		b[st] = 0;
-		i = len;
+		if (pseudo->status)
+		{
+			b[st] = 0;
+			i = len;
+		}
 	}
-	if (pseudo->cmd_buffer_type == OR && !pseudo->status)
+	if (pseudo->cmd_buffer_type == OR)
 	{
-		b[st] = 0;
-		i = len;
+		if (!pseudo->status)
+		{
+			b[st] = 0;
+			i = len;
+		}
 	}
 	*cur = i;
 }

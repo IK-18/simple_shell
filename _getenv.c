@@ -15,7 +15,7 @@ char *_getenv(pseudo_t *pseudo, const char *var)
 	for (node = pseudo->env; node; node = node->next)
 	{
 		str = prefix(node->str, var);
-		if (str && *str)
+		if (*str && str)
 			return (str);
 	}
 	return (NULL);

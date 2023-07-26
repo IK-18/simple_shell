@@ -19,5 +19,5 @@ int eputchar(char c)
 	}
 	if (c != FLUSH)
 		buf[i++] = c;
-	return (1);
+	return (SUCCESS);
 }

@@ -30,9 +30,9 @@ ssize_t _getline(pseudo_t *pseudo, char **lineptr, size_t *size)
 	if (!newptr)
 		return (ptr ? free(ptr), -1 : 1);
 	if (new_pos)
-		_strncat(newptr, buffer, pos);
+		_strncat(newptr, buffer + nothing, pos - nothing);
 	else
-		_strncpy(newptr, buffer, pos + 1);
+		_strncpy(newptr, buffer + nothing, pos - nothing + 1);
 	new_pos += pos - nothing;
 	nothing = pos;
 	ptr = newptr;

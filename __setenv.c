@@ -8,11 +8,12 @@
  */
 int __setenv(pseudo_t *pseudo)
 {
-	int ret = 1;
-
 	if (pseudo->argc != 3)
+	{
 		eputs("Incorrect number of arguements\n");
-	else if (_setenv(pseudo, pseudo->argv[1], pseudo->argv[2]))
+		return (EXIT_FAILURE);
+	}
+	if (_setenv(pseudo, pseudo->argv[1], pseudo->argv[2]))
 		return (EXIT_SUCCESS);
-	return (ret);
+	return (EXIT_FAILURE);
 }

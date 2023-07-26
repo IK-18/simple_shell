@@ -12,7 +12,7 @@ char *__itoa(long int num, int base, int is_unsigned)
 {
 	static char *arr;
 	static char buf[50];
-	char sign, *ptr;
+	char sign = 0, *ptr;
 	unsigned long int new;
 
 	arr = "0123456789ABCDEF";
