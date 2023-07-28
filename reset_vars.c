@@ -8,13 +8,14 @@
  */
 int reset_vars(pseudo_t *pseudo)
 {
-	list_t *node;
 	int i = 0;
+	list_t *node;
 
-	while (pseudo->argv[i])
+	for (i = 0; pseudo->argv[i]; i++)
 	{
 		if (pseudo->argv[i][0] != '$' || !pseudo->argv[i][1])
 			continue;
+
 		if (!_strcmp(pseudo->argv[i], "$?"))
 		{
 			reset_string(&(pseudo->argv[i]),
@@ -35,7 +36,6 @@ int reset_vars(pseudo_t *pseudo)
 			continue;
 		}
 		reset_string(&pseudo->argv[i], __strdup(""));
-		i++;
 	}
 	return (EXIT_SUCCESS);
 }

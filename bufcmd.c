@@ -15,15 +15,10 @@ ssize_t bufcmd(pseudo_t *pseudo, char **buffer, size_t *len)
 
 	if (!*len)
 	{
-		/*_free((void **)pseudo->cmd_buffer);*/
 		free(*buffer);
 		*buffer = NULL;
 		signal(SIGINT, sigBlocker);
-#if GETLINE
-		bytes_read = getline(buffer, &len_ptr, stdin);
-#else
 		bytes_read = _getline(pseudo, buffer, &len_ptr);
-#endif
 		if (bytes_read > 0)
 		{
 			if ((*buffer)[bytes_read - 1] == '\n')
@@ -34,11 +29,8 @@ ssize_t bufcmd(pseudo_t *pseudo, char **buffer, size_t *len)
 			pseudo->linecount_flag = 1;
 			comments(*buffer);
 			add_history(pseudo, *buffer, pseudo->histcount++);
-			/* if (_strchr(*buffer, ';')) */
-			{
-				*len = bytes_read;
-				pseudo->cmd_buffer = buffer;
-			}
+			*len = bytes_read;
+			pseudo->cmd_buffer = buffer;
 		}
 	}
 	return (bytes_read);
