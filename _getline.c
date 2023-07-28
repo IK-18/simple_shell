@@ -23,11 +23,11 @@ int _getline(pseudo_t *info, char **lineptr, size_t *size)
 		nothing = bufsize = 0;
 	bytes_read = rbuf(info, buffer, &bufsize);
 	if (bytes_read == -1 || (bytes_read == 0 && bufsize == 0))
-		return (-1);
+		return (FLUSH);
 	chptr = _strchr(buffer + nothing, '\n');
 	pos = chptr ? 1 + (unsigned int)(chptr - buffer) : bufsize;
 	newptr = _realloc(ptr, new_pos, new_pos ? new_pos + pos : pos + 1);
-	if (!newptr)
+	if (newptr == NULL)
 		return (ptr ? free(ptr), -1 : -1);
 	if (new_pos)
 		_strncat(newptr, buffer + nothing, pos - nothing);

@@ -13,7 +13,7 @@ char **_strtok(char *str, char *delim)
 	char **arr;
 	int a, b, c, d, len = 0;
 
-	if (str == NULL || str[0] == 0)
+	if (!str || !str[0])
 		return (NULL);
 	if (!delim)
 		delim = " ";
@@ -22,7 +22,7 @@ char **_strtok(char *str, char *delim)
 		if (!_chrcmp(str[a], delim) && (_chrcmp(str[a + 1], delim) || !str[a + 1]))
 			len++;
 	}
-	if (len == 0)
+	if (!len)
 		return (NULL);
 	arr = malloc((1 + len) * sizeof(char *));
 	if (!arr)

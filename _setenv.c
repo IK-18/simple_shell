@@ -10,13 +10,14 @@
  */
 int _setenv(pseudo_t *pseudo, char *prop, char *val)
 {
-	char *c, *buffer = NULL;
+	char *buffer = NULL, *c;
 	list_t *node;
 
 	if (!prop || !val)
 		return (EXIT_SUCCESS);
+
 	buffer = malloc(_strlen(prop) + _strlen(val) + 2);
-	if (!buffer)
+	if (buffer == NULL)
 		return (EXIT_FAILURE);
 	_strcpy(buffer, prop);
 	_strcat(buffer, "=");
@@ -24,7 +25,7 @@ int _setenv(pseudo_t *pseudo, char *prop, char *val)
 	for (node = pseudo->env; node; node = node->next)
 	{
 		c = prefix(node->str, prop);
-		if (*c == '=' && c)
+		if (c && *c == '=')
 		{
 			free(node->str);
 			node->str = buffer;

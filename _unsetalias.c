@@ -13,12 +13,12 @@ int _unsetalias(pseudo_t *pseudo, char *str)
 	int ret;
 
 	s = _strchr(str, '=');
-	if (!s)
+	if (s == NULL)
 		return (EXIT_FAILURE);
 	c = *s;
 	*s = 0;
 	ret = delete_node_at_index(&(pseudo->alias),
-		get_index_at_node(pseudo->alias, node_prefix(pseudo->alias, str, -1)));
+							   get_index_at_node(pseudo->alias, node_prefix(pseudo->alias, str, -1)));
 	*s = c;
 	return (ret);
 }

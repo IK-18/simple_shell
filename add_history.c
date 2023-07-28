@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * add_history - adds entry to a history linked list
+ * add_history - adds a node to the history linked list
  * @pseudo: pseudo struct
  * @buffer: buffer
  * @histcount: history linecount

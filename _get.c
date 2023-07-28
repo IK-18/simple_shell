@@ -16,7 +16,7 @@ ssize_t _get(pseudo_t *pseudo)
 	_putchar(FLUSH);
 	bytes_read = bufcmd(pseudo, &buffer, &len);
 	if (bytes_read < 0)
-		return (-1);
+		return (FLUSH);
 	if (len)
 	{
 		new_pos = pos;

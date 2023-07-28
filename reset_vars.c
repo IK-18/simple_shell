@@ -16,13 +16,13 @@ int reset_vars(pseudo_t *pseudo)
 		if (pseudo->argv[i][0] != '$' || !pseudo->argv[i][1])
 			continue;
 
-		if (!_strcmp(pseudo->argv[i], "$?"))
+		if (_strcmp(pseudo->argv[i], "$?") == 0)
 		{
 			reset_string(&(pseudo->argv[i]),
 						 __strdup(__itoa(pseudo->status, 10, 0)));
 			continue;
 		}
-		if (!_strcmp(pseudo->argv[i], "$$"))
+		if (_strcmp(pseudo->argv[i], "$$") == 0)
 		{
 			reset_string(&(pseudo->argv[i]),
 						 __strdup(__itoa(getpid(), 10, 0)));

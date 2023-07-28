@@ -20,10 +20,10 @@ int eatoi(char *str)
 			res *= 10;
 			res += (str[i] - '0');
 			if (res > INT_MAX)
-				return (-1);
+				return (FLUSH);
 		}
 		else
-			return (-1);
+			return (FLUSH);
 		i++;
 	}
 	return (res);
