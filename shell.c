@@ -7,7 +7,7 @@
  *
  * Return: 0 on success, 1 on error
  */
-int main(int argc, char **argv, char **envp)
+int main(int argc, char **argv)
 {
 	pseudo_t pseudo[] = {PSEUDO};
 	int fd = 2;
