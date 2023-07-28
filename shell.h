@@ -115,7 +115,7 @@ ssize_t _get(pseudo_t *pseudo);
 char *_getenv(pseudo_t *pseudo, const char *var);
 char **_getenviron(pseudo_t *pseudo);
 char *_gethistory(pseudo_t *pseudo);
-ssize_t _getline(pseudo_t *pseudo, char **lineptr, size_t *n);
+int _getline(pseudo_t *info, char **ptr, size_t *length);
 int _help(pseudo_t *pseudo);
 int _isalpha(int c);
 int _iscmd(pseudo_t *pseudo, char *pth);

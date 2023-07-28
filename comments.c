@@ -8,15 +8,12 @@
  */
 void comments(char *buffer)
 {
-	int i = 0;
+	int i;
 
-	while (buffer[i] != '\0')
-	{
+	for (i = 0; buffer[i] != '\0'; i++)
 		if (buffer[i] == '#' && (!i || buffer[i - 1] == ' '))
 		{
 			buffer[i] = '\0';
 			break;
 		}
-		i++;
-	}
 }

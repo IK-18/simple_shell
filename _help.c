@@ -8,7 +8,7 @@
  */
 int _help(pseudo_t *pseudo)
 {
-	int i, tab, ws;
+	int i, ws;
 	inbuilt_cmd inbuiltcmds[] = {
 		{"exit", "cause the shell to exit\n", __exit},
 		{"env", "prints the current environment\n", penv},
@@ -22,15 +22,12 @@ int _help(pseudo_t *pseudo)
 
 	for (i = 0; inbuiltcmds[i].flag; i++)
 	{
-		tab = (12 - _strlen(inbuiltcmds[i].flag)) / 4;
-		ws = (12 - _strlen(inbuiltcmds[i].flag)) % 4;
+		ws = 12 - _strlen(inbuiltcmds[i].flag);
 		if (pseudo->argv[1] != NULL)
 		{
 			if (_strcmp(pseudo->argv[1], inbuiltcmds[i].flag) == 0)
 			{
 				_puts(inbuiltcmds[i].flag);
-				for (; tab > 0; tab--)
-					_putchar('\t');
 				for (; ws > 0; ws--)
 					_putchar(' ');
 				_puts(inbuiltcmds[i].desc);
@@ -42,8 +39,6 @@ int _help(pseudo_t *pseudo)
 		else
 		{
 			_puts(inbuiltcmds[i].flag);
-			for (; tab > 0; tab--)
-				_putchar('\t');
 			for (; ws > 0; ws--)
 				_putchar(' ');
 			_puts(inbuiltcmds[i].desc);

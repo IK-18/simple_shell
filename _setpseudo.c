@@ -30,4 +30,5 @@ void _setpseudo(pseudo_t *pseudo, char *argv[])
 		reset_alias(pseudo);
 		reset_vars(pseudo);
 	}
+	return;
 }

@@ -8,27 +8,27 @@
  *
  * Return: number of characters from input, -1 on error
  */
-ssize_t _getline(pseudo_t *pseudo, char **lineptr, size_t *size)
+int _getline(pseudo_t *info, char **lineptr, size_t *size)
 {
 	static char buffer[BUF_SIZE];
 	static size_t nothing, bufsize;
-	ssize_t new_pos, bytes_read;
+	ssize_t bytes_read = 0, new_pos = 0;
 	size_t pos;
-	char *newptr, *ptr, *chptr;
+	char *ptr = NULL, *newptr = NULL, *chptr;
 
 	ptr = *lineptr;
 	if (ptr && size)
 		new_pos = *size;
 	if (nothing == bufsize)
 		nothing = bufsize = 0;
-	bytes_read = rbuf(pseudo, buffer, &bufsize);
-	if ((bytes_read == 0 && bufsize == 0) || bytes_read == -1)
+	bytes_read = rbuf(info, buffer, &bufsize);
+	if (bytes_read == -1 || (bytes_read == 0 && bufsize == 0))
 		return (-1);
 	chptr = _strchr(buffer + nothing, '\n');
 	pos = chptr ? 1 + (unsigned int)(chptr - buffer) : bufsize;
 	newptr = _realloc(ptr, new_pos, new_pos ? new_pos + pos : pos + 1);
 	if (!newptr)
-		return (ptr ? free(ptr), -1 : 1);
+		return (ptr ? free(ptr), -1 : -1);
 	if (new_pos)
 		_strncat(newptr, buffer + nothing, pos - nothing);
 	else
