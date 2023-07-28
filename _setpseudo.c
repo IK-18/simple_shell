@@ -15,7 +15,7 @@ void _setpseudo(pseudo_t *pseudo, char *argv[])
 	if (pseudo->args)
 	{
 		pseudo->argv = _strtok(pseudo->args, " \t");
-		if (pseudo->argv == NULL)
+		if (!pseudo->argv)
 		{
 			pseudo->argv = malloc(sizeof(char *) * 2);
 			if (pseudo->argv)

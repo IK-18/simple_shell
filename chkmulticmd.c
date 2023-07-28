@@ -24,7 +24,7 @@ void chkmulticmd(pseudo_t *pseudo, char *b, size_t *cur, size_t st, size_t len)
 	}
 	if (pseudo->cmd_buffer_type == OR)
 	{
-		if (pseudo->status == 0)
+		if (!pseudo->status)
 		{
 			b[st] = 0;
 			i = len;

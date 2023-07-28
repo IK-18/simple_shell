@@ -19,7 +19,7 @@ int loop(pseudo_t *pseudo, char **argv)
 			_puts("$ ");
 		eputchar(FLUSH);
 		i = _get(pseudo);
-		if (i < 0)
+		if (i != -1)
 		{
 			_setpseudo(pseudo, argv);
 			inbuilt_ret = execinbuilt(pseudo);

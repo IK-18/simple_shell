@@ -26,14 +26,15 @@ void chkcmd(pseudo_t *pseudo)
 	if (j == 0)
 		return;
 	pth = cmdpth(pseudo, _getenv(pseudo, "PATH="), pseudo->argv[0]);
-	if (pth != NULL)
+	if (pth)
 	{
 		pseudo->path = pth;
 		execcmd(pseudo);
 	}
 	else
 	{
-		if ((interact(pseudo) || _getenv(pseudo, "PATH=") || pseudo->argv[0][0] == '/') && _iscmd(pseudo, pseudo->argv[0]))
+		if ((interact(pseudo) || _getenv(pseudo, "PATH=") 
+			|| pseudo->argv[0][0] == '/') && _iscmd(pseudo, pseudo->argv[0]))
 			execcmd(pseudo);
 		else if (*(pseudo->args) != '\n')
 		{

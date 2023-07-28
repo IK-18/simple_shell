@@ -13,10 +13,11 @@ void execcmd(pseudo_t *pseudo)
 	child = fork();
 	if (child == -1)
 	{
-		perror("Error: Canont fork\n");
+		perror("Error: ");
+		/* eputs("Canont fork\n"); */
 		return;
 	}
-	if (!child)
+	if (child == 0)
 	{
 		if (execve(pseudo->path, pseudo->argv, _getenviron(pseudo)) == -1)
 		{

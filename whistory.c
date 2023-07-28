@@ -14,11 +14,11 @@ int whistory(pseudo_t *pseudo)
 	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
 
 	if (fname == NULL)
-		return (FLUSH);
+		return (-1);
 	fd = open(fname, O_CREAT | O_TRUNC | O_RDWR, mode);
 	free(fname);
 	if (fd < 0)
-		return (FLUSH);
+		return (-1);
 	node = pseudo->history;
 	while (node)
 	{

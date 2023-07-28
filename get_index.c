@@ -17,5 +17,5 @@ ssize_t get_index_at_node(list_t *list, list_t *node)
 		if (tmp == node)
 			return (i);
 	}
-	return (FLUSH);
+	return (-1);
 }
