@@ -13,7 +13,7 @@ int fill_env(pseudo_t *pseudo, char **envp)
 
 	while (envp[i])
 	{
-		add_node_end(&node, envp[i], i);
+		add_node_end(&node, envp[i], 0);
 		i++;
 	}
 	pseudo->env = node;
