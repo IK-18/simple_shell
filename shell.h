@@ -162,7 +162,7 @@ void execcmd(pseudo_t *pseudo);
 int execinbuilt(pseudo_t *pseudo);
 int fdputchar(char c, int fd);
 int fdputs(char *str, int fd);
-int fill_env(pseudo_t *pseudo, char **envp);
+int fill_env(pseudo_t *pseudo);
 void free_pseudo(pseudo_t *pseudo, int all);
 void free_list(list_t **list);
 ssize_t get_index_at_node(list_t *list, list_t *node);

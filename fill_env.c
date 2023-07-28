@@ -6,14 +6,14 @@
  *
  * Return: Always 0
  */
-int fill_env(pseudo_t *pseudo, char **envp)
+int fill_env(pseudo_t *pseudo)
 {
 	size_t i = 0;
 	list_t *node = NULL;
 
-	while (envp[i])
+	while (environ[i])
 	{
-		add_node_end(&node, envp[i], 0);
+		add_node_end(&node, environ[i], 0);
 		i++;
 	}
 	pseudo->env = node;

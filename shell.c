@@ -37,7 +37,7 @@ int main(int argc, char **argv, char **envp)
 		}
 		pseudo->readfd = fd;
 	}
-	fill_env(pseudo, envp);
+	fill_env(pseudo);
 	rhistory(pseudo);
 	loop(pseudo, argv);
 	return (EXIT_SUCCESS);
