@@ -30,6 +30,8 @@
 			0, 0, 0                                                             \
 	}
 
+extern char **environ;
+
 /**
  * struct listintstr - a singly linked list
  * @num: number
